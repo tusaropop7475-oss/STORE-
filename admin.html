@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>⚡ FLASH PREMIUM ADMIN v15</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#05050A;color:#fff;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url('{{ bg }}');background-size:cover;background-position:center;background-attachment:fixed;filter:blur(6px) brightness(.22) saturate(1.6);transform:scale(1.1);z-index:-2}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,#FFD70015,transparent 40%),radial-gradient(circle at 80% 80%,#FF005515,transparent 40%);z-index:-1}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#FFD700,#00FFFF);border-radius:10px}
+.ist-badge{position:fixed;top:16px;right:16px;background:rgba(10,10,15,.95);backdrop-filter:blur(20px);border:1px solid #FFD70066;border-radius:14px;padding:10px 16px;font-size:12px;font-weight:900;color:#00FFFF;letter-spacing:1.5px;z-index:999;font-family:'JetBrains Mono',monospace;box-shadow:0 0 15px #FFD70022;text-shadow:0 0 8px #00FFFF88}
+.sb{position:fixed;left:0;top:0;bottom:0;width:260px;background:rgba(5,5,10,.92);backdrop-filter:blur(25px);border-right:1px solid rgba(255,215,0,.2);padding:22px 14px;overflow-y:auto;z-index:100;box-shadow:5px 0 30px #FFD70011}
+.sbh{display:flex;align-items:center;gap:12px;padding:8px 8px 22px;border-bottom:1px solid rgba(255,215,0,.2);margin-bottom:16px}
+.sbl{width:50px;height:50px;border-radius:14px;overflow:hidden;box-shadow:0 0 20px #FFD70066;animation:logoFloat 3s ease-in-out infinite}
+@keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(2deg)}}
+.sbl img{width:100%;height:100%;object-fit:cover}
+.sbt{font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#FFD700,#00FFFF,#FF0055);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 5px #FFD70055)}
+.sbs{font-size:9px;color:rgba(255,255,255,.4);margin-top:3px;letter-spacing:3px;text-transform:uppercase;font-weight:800}
+.st{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,.4);padding:16px 12px 8px}
+.ni{display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:11px;color:rgba(255,255,255,.7);cursor:pointer;transition:.25s;font-size:12px;font-weight:800;margin-bottom:3px;border:none;background:none;width:100%;text-align:left;font-family:inherit;position:relative;letter-spacing:1.5px;text-transform:uppercase}
+.ni::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#FFD700,#00FFFF,#FF0055);transform:scaleY(0);transition:.25s}
+.ni:hover{background:rgba(255,215,0,.05);color:#fff}
+.ni.active{background:linear-gradient(90deg,rgba(255,215,0,.15),rgba(255,0,85,.05))!important;color:#FFD700!important;box-shadow:0 0 20px rgba(255,215,0,.2)!important;text-shadow:0 0 8px #FFD70088}
+.ni.active::before{transform:scaleY(1);box-shadow:0 0 20px #FFD700}
+.ni.active .ic{filter:drop-shadow(0 0 8px #FFD700);animation:iconGlow 2s ease-in-out infinite}
+@keyframes iconGlow{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.ni .ic{font-size:17px;width:22px;text-align:center}
+.mn{margin-left:260px;padding:26px 30px;min-height:100vh}
+.tp{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:14px;background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,215,0,.2);padding:22px 24px;border-radius:20px;position:relative;box-shadow:0 0 25px #FFD70011}
+.tp h1{font-size:28px;font-weight:900;letter-spacing:6px;text-transform:uppercase;color:#fff}
+.tp h1 span{background:linear-gradient(135deg,#FFD700,#00FFFF,#FF0055);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 10px #FFD70055)}
+.tp::after{content:'';position:absolute;bottom:12px;left:24px;width:180px;height:4px;background:linear-gradient(90deg,#FFD700,#00FFFF,#FF0055,transparent);border-radius:4px;filter:blur(2px)}
+.pl{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:24px;font-size:10px;font-weight:900;background:rgba(0,255,136,.05);color:#00FF88;border:1px solid rgba(0,255,136,.4);letter-spacing:2px;text-transform:uppercase;box-shadow:0 0 15px #00FF8822;text-shadow:0 0 5px #00FF8888}
+.pl .dt{width:7px;height:7px;background:#00FF88;border-radius:50%;animation:bl 1.5s infinite;box-shadow:0 0 10px #00FF88}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.3}}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:22px}
+.sc{background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-left:4px solid #FFD700;border-radius:18px;padding:18px;transition:.4s;position:relative;overflow:hidden;box-shadow:0 0 15px #FFD70011}
+.sc:nth-child(2){border-left-color:#00FF88;box-shadow:0 0 15px #00FF8811}
+.sc:nth-child(3){border-left-color:#FF0055;box-shadow:0 0 15px #FF005511}
+.sc:nth-child(4){border-left-color:#00FFFF;box-shadow:0 0 15px #00FFFF11}
+.sc:hover{transform:translateY(-6px);filter:brightness(1.2);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;position:relative;z-index:1}
+.sl{font-size:9.5px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:2px;font-weight:900}
+.si{font-size:20px;width:40px;height:40px;background:rgba(255,255,255,.05);border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;filter:drop-shadow(0 0 8px currentColor)}
+.sv{font-size:28px;font-weight:900;font-family:'JetBrains Mono',monospace;color:#FFD700;text-shadow:0 0 12px #FFD70088;position:relative;z-index:1}
+.sc:nth-child(2) .sv{color:#00FF88;text-shadow:0 0 12px #00FF8888}
+.sc:nth-child(3) .sv{color:#FF0055;text-shadow:0 0 12px #FF005588}
+.sc:nth-child(4) .sv{color:#00FFFF;text-shadow:0 0 12px #00FFFF88}
+.pnl{background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:22px;margin-bottom:18px;box-shadow:0 0 20px rgba(0,0,0,.5)}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:12px}
+.ph h3{font-size:15px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#FFD700;text-shadow:0 0 8px #FFD70055}
+.bt{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border:1px solid;border-radius:12px;font-size:11px;font-weight:900;cursor:pointer;transition:.3s;font-family:inherit;text-decoration:none;white-space:nowrap;letter-spacing:1.5px;text-transform:uppercase;text-shadow:0 0 5px currentColor}
+.bp{background:rgba(255,215,0,.05);border-color:#FFD700;color:#FFD700}
+.bp:hover{background:#FFD700;color:#000;box-shadow:0 0 20px #FFD70066;text-shadow:none;transform:translateY(-3px)}
+.bg{background:rgba(0,255,136,.05);border-color:#00FF88;color:#00FF88}
+.bg:hover{background:#00FF88;color:#000;box-shadow:0 0 20px #00FF8866;text-shadow:none;transform:translateY(-3px)}
+.bd{background:rgba(255,0,85,.05);border-color:#FF0055;color:#FF0055}
+.bd:hover{background:#FF0055;color:#fff;box-shadow:0 0 20px #FF005566;text-shadow:none;transform:translateY(-3px)}
+.bw{background:rgba(255,165,0,.05);border-color:#FFA500;color:#FFA500}
+.bw:hover{background:#FFA500;color:#000;box-shadow:0 0 20px #FFA50066;text-shadow:none;transform:translateY(-3px)}
+.bgh{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)}
+.bgh:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.4);transform:translateY(-3px)}
+.bi{background:rgba(0,255,255,.05);border-color:#00FFFF;color:#00FFFF}
+.bi:hover{background:#00FFFF;color:#000;box-shadow:0 0 20px #00FFFF66;text-shadow:none;transform:translateY(-3px)}
+.bp2{background:rgba(138,43,226,.05);border-color:#8A2BE2;color:#8A2BE2}
+.bp2:hover{background:#8A2BE2;color:#fff;box-shadow:0 0 20px #8A2BE266;text-shadow:none;transform:translateY(-3px)}
+.bs{padding:7px 13px;font-size:10px;border-radius:9px}
+.bx{padding:5px 9px;font-size:10px;border-radius:7px}
+.fr{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px}
+.fg label{display:block;font-size:10px;font-weight:900;color:rgba(255,255,255,.7);margin-bottom:6px;letter-spacing:1.8px;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 15px;background:rgba(0,0,0,.4);border:1px solid rgba(255,215,0,.3);border-radius:11px;color:#fff;font-size:12.5px;font-family:inherit;outline:none;transition:.3s}
+.fg input:focus,.fg textarea:focus{border-color:#FFD700;background:#FFD7000a;box-shadow:0 0 15px #FFD70033}
+.fg textarea{resize:vertical;min-height:100px}
+.tw{overflow-x:auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.25)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:rgba(255,255,255,.03);padding:13px 15px;text-align:left;font-size:9.5px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.4);border-bottom:1px solid rgba(255,255,255,.08);white-space:nowrap}
+td{padding:12px 15px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.7)}
+tr:hover td{background:rgba(255,215,0,.05)}
+.cd{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);padding:4px 9px;border-radius:7px;color:#FFD700;font-weight:700;text-shadow:0 0 5px #FFD70055}
+.bdg{display:inline-block;padding:4px 11px;border-radius:20px;font-size:10px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+.bgs{background:rgba(0,255,136,.1);color:#00FF88;border:1px solid rgba(0,255,136,.35);text-shadow:0 0 5px #00FF8855}
+.bgd{background:rgba(255,0,85,.1);color:#FF0055;border:1px solid rgba(255,0,85,.35);text-shadow:0 0 5px #FF005555}
+.bgw{background:rgba(255,165,0,.1);color:#FFA500;border:1px solid rgba(255,165,0,.35);text-shadow:0 0 5px #FFA50055}
+.bgi{background:rgba(0,255,255,.1);color:#00FFFF;border:1px solid rgba(0,255,255,.35);text-shadow:0 0 5px #00FFFF55}
+.bgp{background:rgba(138,43,226,.1);color:#8A2BE2;border:1px solid rgba(138,43,226,.35);text-shadow:0 0 5px #8A2BE255}
+.pg{display:none}
+.pg.active{display:block}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(15px);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.ov.active{display:flex}
+.mdl{background:rgba(10,10,15,.98);border:1px solid #FFD70066;border-radius:22px;padding:28px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 0 50px #FFD70033}
+.mdl h3{font-size:16px;margin-bottom:18px;font-weight:900;letter-spacing:3px;text-transform:uppercase;background:linear-gradient(135deg,#FFD700,#00FFFF,#FF0055);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 8px #FFD70055)}
+.tc2{position:fixed;top:20px;right:20px;z-index:20000;display:flex;flex-direction:column;gap:10px;max-width:340px}
+.tst{background:rgba(10,10,15,.98);border:1px solid rgba(255,255,255,.15);border-left:4px solid #FFD700;border-radius:13px;padding:14px 18px;font-size:12px;font-weight:800;box-shadow:0 15px 50px rgba(0,0,0,.6), 0 0 20px #FFD70022;animation:ti .35s;letter-spacing:1px;text-transform:uppercase;color:#fff}
+.tst.s{border-left-color:#00FF88;box-shadow:0 0 20px #00FF8822}
+.tst.e{border-left-color:#FF0055;box-shadow:0 0 20px #FF005522}
+@keyframes ti{from{opacity:0;transform:translateX(100px)}to{opacity:1;transform:translateX(0)}}
+.emp{text-align:center;padding:40px 20px;color:rgba(255,255,255,.4);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.mt{display:none;position:fixed;top:16px;left:16px;z-index:200;width:48px;height:48px;background:rgba(10,10,15,.9);border:1px solid #FFD70066;border-radius:14px;color:#FFD700;font-size:20px;cursor:pointer;box-shadow:0 0 15px #FFD70033}
+.chart-box{background:rgba(0,0,0,.3);border-radius:16px;padding:20px;margin-top:12px;border:1px solid rgba(255,255,255,.05)}
+.chart-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.chart-lbl{font-size:11px;color:rgba(255,255,255,.6);font-weight:800;letter-spacing:1px;text-transform:uppercase;min-width:70px}
+.chart-bar-wrap{flex:1;height:22px;background:rgba(255,255,255,.05);border-radius:11px;overflow:hidden}
+.chart-bar{height:100%;background:linear-gradient(90deg,#FFD700,#00FFFF,#FF0055);border-radius:11px;transition:width .6s;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:10px;font-weight:900;color:#fff}
+.top-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,0,0,.3);border-radius:12px;margin-bottom:8px;border:1px solid rgba(255,255,255,.05)}
+.top-rank{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#FF0055);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 0 10px #FFD70066;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.top-uid{flex:1;font-family:'JetBrains Mono',monospace;font-size:12px;color:#FFD700;font-weight:800;text-shadow:0 0 5px #FFD70055}
+.top-val{font-weight:900;color:#00FF88;text-shadow:0 0 8px #00FF8866}
+.visitor-row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(0,0,0,.3);border-radius:12px;margin-bottom:8px;font-size:12px;border:1px solid rgba(255,255,255,.05)}
+.visitor-row .vip{font-family:'JetBrains Mono',monospace;color:#00FFFF;font-weight:800;min-width:120px;text-shadow:0 0 5px #00FFFF55}
+.visitor-row .vpath{color:rgba(255,255,255,.6);flex:1}
+.visitor-row .vtime{font-size:10px;color:rgba(255,255,255,.4)}
+.toggle-sw{display:flex;align-items:center;gap:12px;padding:14px;background:rgba(0,0,0,.3);border-radius:12px;margin-bottom:12px;border:1px solid rgba(255,255,255,.05)}
+.toggle-sw label{font-size:12px;font-weight:900;flex:1;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase}
+.sw{width:50px;height:26px;background:rgba(255,255,255,.1);border-radius:20px;position:relative;cursor:pointer;transition:.3s;flex-shrink:0;border:1px solid rgba(255,255,255,.2)}
+.sw.on{background:rgba(255,215,0,.2);border-color:#FFD700;box-shadow:0 0 15px #FFD70033}
+.sw::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s}
+.sw.on::after{left:27px;background:#FFD700;box-shadow:0 0 10px #FFD700}
+.qa-bar{display:flex;gap:8px;flex-wrap:wrap;background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,215,0,.25);border-radius:16px;padding:12px 16px;margin-bottom:20px;align-items:center;overflow-x:auto;box-shadow:0 0 20px #FFD70011}
+.qa-btn{display:flex;align-items:center;gap:7px;padding:9px 15px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.8);font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.25s;font-family:inherit;white-space:nowrap}
+.qa-btn:hover{background:rgba(255,215,0,.1);border-color:rgba(255,215,0,.5);color:#FFD700;transform:translateY(-2px);box-shadow:0 0 15px #FFD70022}
+.qa-btn.primary{background:rgba(255,215,0,.05);border-color:#FFD700;color:#FFD700;text-shadow:0 0 5px #FFD70088;box-shadow:0 0 10px #FFD70022}
+.qa-btn.success{background:rgba(0,255,136,.05);border-color:rgba(0,255,136,.4);color:#00FF88;text-shadow:0 0 5px #00FF8888}
+.qa-btn.danger{background:rgba(255,0,85,.05);border-color:rgba(255,0,85,.4);color:#FF0055;text-shadow:0 0 5px #FF005588}
+.filter-panel{background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,215,0,.25);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 0 15px #FFD70011}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.filter-chip{padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);font-size:11px;font-weight:800;cursor:pointer;transition:.2s;letter-spacing:1px;text-transform:uppercase;font-family:inherit}
+.filter-chip.active{background:rgba(255,215,0,.1);color:#FFD700;border-color:#FFD700;box-shadow:0 0 15px #FFD70044;text-shadow:0 0 8px #FFD70088}
+.filter-chip:hover{transform:translateY(-1px)}
+.filter-input{padding:9px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,215,0,.3);border-radius:10px;color:#fff;font-size:12px;outline:none;font-family:inherit;min-width:140px;transition:.3s}
+.filter-input:focus{border-color:#FFD700;background:#FFD7000a;box-shadow:0 0 15px #FFD70033}
+.filter-label{font-size:10px;color:rgba(255,255,255,.5);font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-right:6px}
+.sparkline-wrap{background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,215,0,.25);border-radius:16px;padding:16px;margin-bottom:18px;position:relative;overflow:hidden;box-shadow:0 0 20px #FFD70011}
+.sparkline-wrap h4{font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.sparkline-wrap canvas{width:100%;height:80px;display:block;border-radius:10px}
+.sparkline-total{font-family:'JetBrains Mono',monospace;font-size:16px;color:#FFD700;font-weight:900;text-shadow:0 0 10px #FFD70088}
+.bulk-bar{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(10,10,15,.98);backdrop-filter:blur(24px);border:1px solid #FFD70066;border-radius:16px;padding:12px 18px;box-shadow:0 20px 60px rgba(0,0,0,.7), 0 0 30px #FFD70022;z-index:1500;align-items:center;gap:10px;flex-wrap:wrap}
+.bulk-bar.show{display:flex;animation:bulkSlideUp .3s}
+@keyframes bulkSlideUp{from{opacity:0;transform:translateX(-50%) translateY(50px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.bulk-bar .bulk-count{font-size:12px;font-weight:900;color:#FFD700;letter-spacing:1.5px;text-transform:uppercase;padding-right:8px;border-right:1px solid rgba(255,255,255,.1);text-shadow:0 0 5px #FFD70088}
+.bulk-bar button{padding:8px 14px;border-radius:9px;border:none;font-size:10.5px;font-weight:900;cursor:pointer;letter-spacing:1px;text-transform:uppercase;font-family:inherit;transition:.2s}
+.bulk-bar button:hover{transform:translateY(-2px)}
+.select-cb{width:18px;height:18px;border:2px solid rgba(255,215,0,.5);border-radius:5px;background:rgba(0,0,0,.3);cursor:pointer;appearance:none;-webkit-appearance:none;position:relative;transition:.2s;vertical-align:middle;margin:0}
+.select-cb:checked{background:linear-gradient(135deg,#FFD700,#FF0055);border-color:transparent;box-shadow:0 0 10px #FFD70066}
+.select-cb:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:900}
+.select-cb:hover{border-color:#FFD700}
+.kb-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.kb-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(0,0,0,.3);border-radius:10px;font-size:12px;border:1px solid rgba(255,255,255,.05)}
+.kb-row .kb-keys{display:flex;gap:4px}
+.kb-row kbd{padding:3px 8px;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.4);border-radius:5px;font-size:10px;font-weight:900;color:#FFD700;font-family:monospace;box-shadow:0 0 5px #FFD70022;text-shadow:0 0 5px #FFD70088}
+.kb-row .kb-desc{color:rgba(255,255,255,.75);font-weight:700}
+.sound-toggle{display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:10px;cursor:pointer;font-size:11px;font-weight:800;color:rgba(255,255,255,.7);letter-spacing:1px;text-transform:uppercase;transition:.2s}
+.sound-toggle:hover{background:rgba(255,255,255,.08)}
+.sound-toggle.on{background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.4);color:#00FF88;box-shadow:0 0 10px #00FF8822;text-shadow:0 0 5px #00FF8888}
+.theme-toggle{width:42px;height:22px;background:rgba(255,255,255,.1);border-radius:12px;position:relative;cursor:pointer;transition:.3s}
+.theme-toggle::after{content:'🌙';position:absolute;left:2px;top:50%;transform:translateY(-50%);width:18px;height:18px;background:linear-gradient(135deg,#FFD700,#FF0055);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;transition:.3s;box-shadow:0 0 10px #FFD70088}
+.theme-toggle.light::after{content:'☀️';left:calc(100% - 20px)}
+.cmd-item{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;cursor:pointer;color:#fff;font-size:13px;font-weight:700;letter-spacing:.5px;transition:background .15s}
+.cmd-item:hover,.cmd-item.selected{background:linear-gradient(90deg,rgba(255,215,0,.15),rgba(255,0,85,.05));box-shadow:inset 3px 0 0 #FFD700}
+.cmd-item .cmd-icon{font-size:20px;width:32px;text-align:center}
+.cmd-item .cmd-label{flex:1}
+.cmd-item .cmd-shortcut{font-size:10px;padding:3px 8px;background:rgba(255,255,255,.06);border-radius:6px;color:rgba(255,255,255,.5);font-weight:800}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.7)}50%{box-shadow:0 0 0 12px rgba(0,255,136,0)}}
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .mn{margin-left:0;padding:80px 16px 20px}
+  .mt{display:flex;align-items:center;justify-content:center}
+  .sg{grid-template-columns:repeat(2,1fr)}
+  .tp h1{font-size:18px;letter-spacing:3px}
+  .ist-badge{top:10px;right:10px;font-size:10px;padding:6px 10px}
+}
+</style>
+</head>
+<body>
+
+<button class="mt" onclick="document.getElementById('sb').classList.toggle('open')">☰</button>
+<div class="ist-badge">🇮🇳 <span id="ist-clock">Loading...</span></div>
+
+<aside class="sb" id="sb">
+<div class="sbh">
+  <div class="sbl"><img src="{{ logo }}" alt="logo"></div>
+  <div><div class="sbt">⚡ FLASH PREMIUM</div><div class="sbs">🔐 ᴀᴅᴍɪɴ ᴠ15</div></div>
+</div>
+<div class="st">📊 ᴍᴀɪɴ</div>
+<button class="ni active" onclick="go('dash',this)"><span class="ic">📊</span>ᴅᴀꜱʜʙᴏᴀʀᴅ</button>
+<button class="ni" onclick="go('orders',this)"><span class="ic">📦</span>ᴏʀᴅᴇʀꜱ</button>
+<button class="ni" onclick="go('analytics',this)"><span class="ic">📈</span>ᴀɴᴀʟʏᴛɪᴄꜱ</button>
+<button class="ni" onclick="go('leaderboard',this)"><span class="ic">🏆</span>ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ</button>
+<div class="st">👁️ ᴛʀᴀᴄᴋɪɴɢ</div>
+<button class="ni" onclick="go('visitors',this)"><span class="ic">👁️</span>ᴠɪꜱɪᴛᴏʀꜱ</button>
+<button class="ni" onclick="go('commands',this)"><span class="ic">⚡</span>ᴄᴏᴍᴍᴀɴᴅ ʟᴏɢꜱ</button>
+<div class="st">🔑 ᴘʀᴏᴅᴜᴄᴛꜱ</div>
+<button class="ni" onclick="go('products',this)"><span class="ic">🔑</span>ᴘʀᴏᴅᴜᴄᴛꜱ</button>
+<button class="ni" onclick="go('genkey',this)"><span class="ic">✨</span>ɢᴇɴᴇʀᴀᴛᴇ ᴋᴇʏꜱ</button>
+<div class="st">🔐 ᴋᴇʏꜱ ᴠᴀᴜʟᴛ</div>
+<button class="ni" onclick="go('keys',this)"><span class="ic">🔐</span>ᴀᴄᴛɪᴠᴇ ᴋᴇʏꜱ</button>
+<button class="ni" onclick="go('redeemed',this)"><span class="ic">✅</span>ʀᴇᴅᴇᴇᴍᴇᴅ</button>
+<div class="st">👥 ᴜꜱᴇʀꜱ</div>
+<button class="ni" onclick="go('users',this)"><span class="ic">👤</span>ꜱᴛᴏʀᴇ ᴜꜱᴇʀꜱ</button>
+<button class="ni" onclick="go('helpers',this)"><span class="ic">🤝</span>ʜᴇʟᴘᴇʀꜱ</button>
+<button class="ni" onclick="go('vips',this)"><span class="ic">👶</span>ᴠɪᴘ ᴜꜱᴇʀꜱ</button>
+<button class="ni" onclick="go('known',this)"><span class="ic">👥</span>ᴋɴᴏᴡɴ</button>
+<button class="ni" onclick="go('banned',this)"><span class="ic">🚫</span>ʙᴀɴɴᴇᴅ</button>
+<div class="st">🎯 ᴍᴀʀᴋᴇᴛɪɴɢ</div>
+<button class="ni" onclick="go('coupons',this)"><span class="ic">🎟️</span>ᴄᴏᴜᴘᴏɴꜱ</button>
+<button class="ni" onclick="go('broadcast',this)"><span class="ic">📣</span>ʙʀᴏᴀᴅᴄᴀꜱᴛ</button>
+<button class="ni" onclick="go('notifications',this)"><span class="ic">🔔</span>ɴᴏᴛɪꜰɪᴄᴀᴛɪᴏɴꜱ</button>
+<button class="ni" onclick="go('announce',this)"><span class="ic">📢</span>ᴀɴɴᴏᴜɴᴄᴇᴍᴇɴᴛ</button>
+<div class="st">💬 ꜱᴜᴘᴘᴏʀᴛ</div>
+<button class="ni" onclick="go('chat',this)"><span class="ic">💬</span>ʟɪᴠᴇ ᴄʜᴀᴛ</button>
+<button class="ni" onclick="go('ratings',this)"><span class="ic">⭐</span>ʀᴀᴛɪɴɢꜱ</button>
+<div class="st">📝 ᴄᴏɴᴛᴇɴᴛ</div>
+<button class="ni" onclick="go('faqs',this)"><span class="ic">❓</span>ꜰᴀQꜱ</button>
+<button class="ni" onclick="go('testimonials',this)"><span class="ic">💬</span>ᴛᴇꜱᴛɪᴍᴏɴɪᴀʟꜱ</button>
+<div class="st">⚙️ ꜱʏꜱᴛᴇᴍ</div>
+<button class="ni" onclick="go('settings',this)"><span class="ic">⚙️</span>ꜱᴇᴛᴛɪɴɢꜱ</button>
+<button class="ni" onclick="go('system',this)"><span class="ic">💻</span>ꜱʏꜱᴛᴇᴍ</button>
+<button class="ni" onclick="go('backup',this)"><span class="ic">💾</span>ʙᴀᴄᴋᴜᴘ</button>
+<button class="ni" onclick="go('logs',this)"><span class="ic">📋</span>ᴀᴜᴅɪᴛ ʟᴏɢꜱ</button>
+<div class="st">🚪 ᴀᴄᴄᴏᴜɴᴛ</div>
+<a href="/logout" class="ni" style="text-decoration:none;color:#FF0055"><span class="ic">🚪</span>ʟᴏɢᴏᴜᴛ</a>
+</aside>
+
+<main class="mn">
+<div class="tp">
+<h1>⚡ ᴀᴅᴍɪɴ <span>ᴏɴʟʏ</span> ᴄᴏᴍᴍᴀɴᴅ ⚡</h1>
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+<button class="bt bgh bs" onclick="openCmdPalette()" style="font-family:monospace;letter-spacing:1px">⌘ K</button>
+<div id="newOrderBadge" style="display:none;background:rgba(0,255,136,.1);border:1px solid #00FF88;color:#00FF88;font-size:11px;font-weight:900;padding:6px 14px;border-radius:20px;letter-spacing:1.5px;cursor:pointer;animation:pulseBadge 2s infinite;text-shadow:0 0 5px #00FF8888;box-shadow:0 0 15px #00FF8833" onclick="newOrderCount=0;this.style.display='none';"><span>🔔</span> <span id="badgeCount">0</span> NEW</div>
+<div class="pl"><span class="dt"></span>🟢 ᴏɴʟɪɴᴇ</div>
+<button class="bt bgh bs" onclick="rf()">🔄</button>
+</div></div>
+
+<div class="qa-bar">
+  <span style="font-size:10px;font-weight:900;letter-spacing:2px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-right:6px">⚡ Quick:</span>
+  <button class="qa-btn primary" onclick="go('genkey')">✨ ɢᴇɴ ᴋᴇʏꜱ</button>
+  <button class="qa-btn success" onclick="go('orders')">📦 ᴏʀᴅᴇʀꜱ</button>
+  <button class="qa-btn" onclick="go('chat')">💬 ᴄʜᴀᴛ</button>
+  <button class="qa-btn" onclick="go('broadcast')">📣 ʙʀᴏᴀᴅᴄᴀꜱᴛ</button>
+  <button class="qa-btn" onclick="go('analytics')">📈 ᴀɴᴀʟʏᴛɪᴄꜱ</button>
+  <button class="qa-btn" onclick="go('users')">👤 ᴜꜱᴇʀꜱ</button>
+  <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+    <div class="sound-toggle" id="soundToggle" onclick="toggleSound()">🔔 <span id="soundLabel">ꜱᴏᴜɴᴅ ᴏɴ</span></div>
+    <button class="qa-btn" onclick="openKbShortcuts()">⌨️ ꜱʜᴏʀᴛᴄᴜᴛꜱ</button>
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme"></div>
+  </div>
+</div>
+
+<div class="sparkline-wrap">
+  <h4>📈 ʟɪᴠᴇ ʀᴇᴠᴇɴᴜᴇ (24ʜ) <span class="sparkline-total" id="sparkTotal">₹0</span></h4>
+  <canvas id="sparkCanvas"></canvas>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div class="pg active" id="p-dash">
+<div class="sg">
+<div class="sc"><div class="sh"><span class="sl">📦 ᴛᴏᴛᴀʟ ᴏʀᴅᴇʀꜱ</span><div class="si">📦</div></div><div class="sv" id="s-orders">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">✅ ᴘᴀɪᴅ</span><div class="si">✅</div></div><div class="sv" id="s-paid">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">⏳ ᴘᴇɴᴅɪɴɢ</span><div class="si">⏳</div></div><div class="sv" id="s-pending">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">💰 ʀᴇᴠᴇɴᴜᴇ</span><div class="si">💰</div></div><div class="sv" id="s-revenue">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">🔑 ᴘʀᴏᴅᴜᴄᴛꜱ</span><div class="si">🔑</div></div><div class="sv" id="s-products">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">🔐 ᴛᴏᴛᴀʟ ᴋᴇʏꜱ</span><div class="si">🔐</div></div><div class="sv" id="s-keys">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">🎯 ᴀᴄᴛɪᴠᴇ</span><div class="si">🎯</div></div><div class="sv" id="s-active-keys">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">👤 ᴜꜱᴇʀꜱ</span><div class="si">👤</div></div><div class="sv" id="s-users">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">👶 ᴠɪᴘ ᴜꜱᴇʀꜱ</span><div class="si">👶</div></div><div class="sv" id="s-vips">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">🤝 ʜᴇʟᴘᴇʀꜱ</span><div class="si">🤝</div></div><div class="sv" id="s-helpers">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">👁️ ᴠɪꜱɪᴛꜱ ᴛᴏᴅᴀʏ</span><div class="si">👁️</div></div><div class="sv" id="s-visits">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">🖥️ ᴄᴘᴜ</span><div class="si">🖥️</div></div><div class="sv" id="s-cpu">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">💾 ʀᴀᴍ</span><div class="si">💾</div></div><div class="sv" id="s-ram">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">⭐ ʀᴀᴛɪɴɢ</span><div class="si">⭐</div></div><div class="sv" id="s-rating">-</div></div>
+</div>
+<div class="pnl"><div class="ph"><div><h3>📈 ʀᴇᴠᴇɴᴜᴇ · ʟᴀꜱᴛ 7 ᴅᴀʏꜱ</h3></div></div>
+<div class="chart-box" id="chart7"><div class="emp">⏳ ʟᴏᴀᴅɪɴɢ...</div></div></div>
+<div class="pnl"><div class="ph"><div><h3>📦 ʀᴇᴄᴇɴᴛ ᴏʀᴅᴇʀꜱ</h3></div></div>
+<div class="tw"><table id="ro"><thead><tr><th>⏰ ᴛɪᴍᴇ</th><th>🆔 ᴏʀᴅᴇʀ</th><th>📦 ᴘʀᴏᴅᴜᴄᴛ</th><th>💵 ᴀᴍᴏᴜɴᴛ</th><th>📊 ꜱᴛᴀᴛᴜꜱ</th></tr></thead><tbody></tbody></table></div></div>
+</div>
+
+<!-- ============ VISITORS ============ -->
+<div class="pg" id="p-visitors">
+<div class="pnl"><div class="ph"><h3>👁️ ᴠɪꜱɪᴛᴏʀ ʟᴏɢꜱ</h3><button class="bt bgh bs" onclick="lv()">🔄</button></div>
+<div id="visitorList"><div class="emp">⏳ ʟᴏᴀᴅɪɴɢ...</div></div></div></div>
+
+<!-- ============ COMMANDS ============ -->
+<div class="pg" id="p-commands">
+<div class="pnl"><div class="ph"><h3>⚡ ᴄᴏᴍᴍᴀɴᴅ ʟᴏɢꜱ</h3><button class="bt bgh bs" onclick="lcmd()">🔄</button></div>
+<div id="commandList"><div class="emp">⏳ ʟᴏᴀᴅɪɴɢ...</div></div></div></div>
+
+<!-- ============ ORDERS ============ -->
+<div class="pg" id="p-orders">
+  <div class="filter-panel">
+    <div class="filter-row">
+      <span class="filter-label">📊 Status:</span>
+      <button class="filter-chip active" data-status="all" onclick="setOrderFilter('all',this)">ᴀʟʟ</button>
+      <button class="filter-chip" data-status="pending" onclick="setOrderFilter('pending',this)">⏳ ᴘᴇɴᴅɪɴɢ</button>
+      <button class="filter-chip" data-status="success" onclick="setOrderFilter('success',this)">✅ ᴘᴀɪᴅ</button>
+      <button class="filter-chip" data-status="expired" onclick="setOrderFilter('expired',this)">⌛ ᴇxᴘɪʀᴇᴅ</button>
+      <button class="filter-chip" data-status="refunded" onclick="setOrderFilter('refunded',this)">💸 ʀᴇꜰᴜɴᴅ</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">🔎 Search:</span>
+      <input class="filter-input" id="advOrderSearch" placeholder="Order ID, name, TG ID, product..." style="flex:1;min-width:200px" oninput="ldAdvancedOrders()">
+      <span class="filter-label">💰 Amount:</span>
+      <input class="filter-input" id="advMinAmt" type="number" placeholder="min" style="width:90px" oninput="ldAdvancedOrders()">
+      <span style="color:rgba(255,255,255,.3)">—</span>
+      <input class="filter-input" id="advMaxAmt" type="number" placeholder="max" style="width:90px" oninput="ldAdvancedOrders()">
+      <span class="filter-label">📅 From:</span>
+      <input class="filter-input" id="advDateFrom" type="date" style="width:140px" oninput="ldAdvancedOrders()">
+      <span style="color:rgba(255,255,255,.3)">—</span>
+      <input class="filter-input" id="advDateTo" type="date" style="width:140px" oninput="ldAdvancedOrders()">
+      <button class="qa-btn" onclick="resetOrderFilters()">🔄 ʀᴇꜱᴇᴛ</button>
+      <button class="qa-btn success" onclick="exportCSV()">📥 ᴄꜱᴠ</button>
+    </div>
+  </div>
+  <div class="pnl">
+    <div class="ph">
+      <h3>📦 ᴀʟʟ ᴏʀᴅᴇʀꜱ <span id="orderCountLabel" style="font-size:12px;color:rgba(255,255,255,.4);font-weight:700">(0)</span></h3>
+      <button class="bt bgh bs" onclick="ldAdvancedOrders()">🔄 ʀᴇꜰʀᴇꜱʜ</button>
+    </div>
+    <div class="tw">
+      <table id="ot">
+        <thead>
+          <tr>
+            <th style="width:30px"><input type="checkbox" class="select-cb" id="selectAllOrders" onchange="toggleSelectAll()"></th>
+            <th>⏰ ᴛɪᴍᴇ</th><th>🆔 ᴏʀᴅᴇʀ</th><th>👤 ᴄᴜꜱᴛᴏᴍᴇʀ</th><th>📨 ᴛɢ</th>
+            <th>📦 ᴘʀᴏᴅᴜᴄᴛ</th><th>💵 ᴀᴍᴛ</th><th>📊 ꜱᴛᴀᴛ</th><th>🔑 ᴋᴇʏ</th><th>⚙️</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="bulk-bar" id="bulkBar">
+  <span class="bulk-count" id="bulkCount">0 ꜱᴇʟᴇᴄᴛᴇᴅ</span>
+  <button class="qa-btn success" onclick="bulkAction('mark_paid')">✅ ᴍᴀʀᴋ ᴘᴀɪᴅ</button>
+  <button class="qa-btn" onclick="bulkAction('resend')">📨 ʀᴇꜱᴇɴᴅ ᴋᴇʏꜱ</button>
+  <button class="qa-btn danger" onclick="bulkAction('refund')">💸 ʀᴇꜰᴜɴᴅ</button>
+  <button class="qa-btn danger" onclick="bulkAction('delete')">🗑️ ᴅᴇʟᴇᴛᴇ</button>
+  <button class="qa-btn" onclick="clearSelection()">✕ ᴄʟᴇᴀʀ</button>
+</div>
+
+<!-- ============ ANALYTICS ============ -->
+<div class="pg" id="p-analytics">
+<div class="sg">
+<div class="sc"><div class="sh"><span class="sl">📅 ᴛᴏᴅᴀʏ</span><div class="si">💰</div></div><div class="sv" id="a-today">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">📆 ᴡᴇᴇᴋ</span><div class="si">📈</div></div><div class="sv" id="a-week">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">🗓️ ᴍᴏɴᴛʜ</span><div class="si">📉</div></div><div class="sv" id="a-month">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">💵 ᴀᴠɢ</span><div class="si">💵</div></div><div class="sv" id="a-avg">-</div></div>
+</div>
+<div class="pnl"><div class="ph"><h3>🔥 ᴛᴏᴘ ꜱᴇʟʟɪɴɢ ᴘʀᴏᴅᴜᴄᴛꜱ</h3></div><div id="a-top" class="emp">⏳</div></div></div>
+
+<!-- ============ LEADERBOARD ============ -->
+<div class="pg" id="p-leaderboard">
+<div class="pnl"><div class="ph"><h3>🏆 ᴛᴏᴘ 10 ᴄᴜꜱᴛᴏᴍᴇʀꜱ</h3></div>
+<div id="leaderboardList"><div class="emp">⏳</div></div></div></div>
+
+<!-- ============ PRODUCTS ============ -->
+<div class="pg" id="p-products">
+<div class="pnl"><div class="ph"><h3>🔑 ᴘʀᴏᴅᴜᴄᴛꜱ</h3><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="bt bp bs" onclick="apm()">➕ ᴀᴅᴅ</button><button class="bt bw bs" onclick="bulkPrice()">💰 ʙᴜʟᴋ ᴘʀɪᴄᴇ</button></div></div>
+<div class="tw"><table id="pt"><thead><tr><th>🆔</th><th>📛</th><th>⭐</th><th>⏱</th><th>🕐</th><th>💵</th><th>⚡</th><th>🔢</th><th>🔥</th><th>📊</th><th>⚙️</th></tr></thead><tbody></tbody></table></div></div></div>
+
+<!-- ============ GENKEY ============ -->
+<div class="pg" id="p-genkey">
+<div class="pnl"><div class="ph"><h3>✨ ɢᴇɴᴇʀᴀᴛᴇ ᴋᴇʏꜱ</h3></div>
+<div class="fr">
+<div class="fg"><label>🔖 ᴘʀᴇꜰɪx</label><input id="gp" value="VIP"></div>
+<div class="fg"><label>⏱ ᴅᴜʀᴀᴛɪᴏɴ</label><select id="gd">
+<option value="1hr">1 ʜ</option><option value="6hr">6 ʜ</option><option value="12hr">12 ʜ</option>
+<option value="1d" selected>1 ᴅ</option><option value="2d">2 ᴅ</option><option value="3d">3 ᴅ</option>
+<option value="4d">4 ᴅ</option><option value="5d">5 ᴅ</option><option value="6d">6 ᴅ</option>
+<option value="7d">7 ᴅ</option><option value="30d">30 ᴅ</option>
+</select></div>
+<div class="fg"><label>🔢 ᴄᴏᴜɴᴛ</label><input id="gc" type="number" value="1" min="1" max="100"></div>
+<div class="fg"><label>⚡ ᴍᴀx ᴛ (ꜱ)</label><input id="gmt" type="number" value="400"></div>
+<div class="fg"><label>⏳ ᴄᴏᴏʟᴅᴏᴡɴ</label><input id="gcd" type="number" value="60"></div>
+</div>
+<button class="bt bp" onclick="gk()">✨ ɢᴇɴᴇʀᴀᴛᴇ</button>
+<div id="gr" style="margin-top:18px"></div>
+</div></div>
+
+<!-- ============ KEYS ============ -->
+<div class="pg" id="p-keys">
+<div class="pnl"><div class="ph"><h3>🔐 ᴀᴄᴛɪᴠᴇ ᴋᴇʏꜱ</h3>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<input id="keySearch" placeholder="🔎" oninput="lk()" class="filter-input">
+<button class="bt bgh bs" onclick="lk()">🔄</button>
+<button class="bt bd bs" onclick="deleteExpiredKeys()">🗑️ ᴄʟᴇᴀɴ</button>
+<button class="bt bp bs" onclick="bulkCopyKeys()">📋 ᴄᴏᴘʏ</button>
+<button class="bt bi bs" onclick="exportKeys()">📥</button>
+</div></div>
+<div class="tw"><table id="kt"><thead><tr><th>🔑 ᴄᴏᴅᴇ</th><th>📊 ᴛʏᴘᴇ</th><th>⏱ ᴅᴜʀ</th><th>📅 ᴇxᴘ</th><th>⚡</th><th>⚙️</th></tr></thead><tbody></tbody></table></div></div></div>
+
+<!-- ============ REDEEMED ============ -->
+<div class="pg" id="p-redeemed">
+<div class="pnl"><div class="ph"><h3>✅ ʀᴇᴅᴇᴇᴍᴇᴅ ᴋᴇʏꜱ</h3>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<input id="redSearch" placeholder="🔎" oninput="lr()" class="filter-input">
+<button class="bt bgh bs" onclick="lr()">🔄</button>
+<button class="bt bw bs" onclick="revokeExpired()">🚫 ʀᴇᴠᴏᴋᴇ</button>
+<button class="bt bi bs" onclick="exportRedeemed()">📥</button>
+</div></div>
+<div class="tw"><table id="rt"><thead><tr><th>🔑</th><th>👤 ᴜꜱᴇʀ</th><th>📅 ʀᴇᴅ</th><th>📅 ᴇxᴘ</th><th>⚙️</th></tr></thead><tbody></tbody></table></div></div></div>
+
+<!-- ============ USERS ============ -->
+<div class="pg" id="p-users">
+<div class="pnl"><div class="ph"><h3>👤 ꜱᴛᴏʀᴇ ᴜꜱᴇʀꜱ</h3><button class="bt bgh bs" onclick="lus()">🔄</button></div>
+<div class="tw"><table id="ut"><thead><tr><th>👤 ᴜꜱᴇʀ ɪᴅ</th><th>📅</th><th>📦</th><th>💳 ʙᴀʟ</th><th>⚙️</th></tr></thead><tbody></tbody></table></div></div></div>
+
+<!-- ============ HELPERS ============ -->
+<div class="pg" id="p-helpers">
+<div class="pnl"><div class="ph"><h3>🤝 ʜᴇʟᴘᴇʀꜱ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ</h3><div style="display:flex;gap:8px"><button class="bt bp bs" onclick="addHelper()">➕ ᴀᴅᴅ ʜᴇʟᴘᴇʀ</button><button class="bt bgh bs" onclick="lHelp()">🔄</button></div></div>
+<div class="tw"><table id="hlt"><thead><tr><th>👤 ᴜꜱᴇʀɴᴀᴍᴇ</th><th>📅 ᴀᴅᴅᴇᴅ</th><th>📊 ꜱᴛᴀᴛᴜꜱ</th><th>⚙️</th></tr></thead><tbody></tbody></table></div></div></div>
+
+<!-- ============ VIPS ============ -->
+<div class="pg" id="p-vips">
+<div class="pnl"><div class="ph"><h3>👶 ᴠɪᴘ ᴜꜱᴇʀꜱ</h3></div>
+<div class="emp" style="margin-bottom:16px">💎 VIP Users List</div>
+<div id="vipList"></div>
+</div></div>
+
+<!-- ============ KNOWN ============ -->
+<div class="pg" id="p-known">
+<div class="pnl"><div class="ph"><h3>👥 ᴋɴᴏᴡɴ ᴜꜱᴇʀꜱ</h3><button class="bt bgh bs" onclick="lk2()">🔄</button></div>
+<div class="tw"><table id="kt2"><thead><tr><th>👤</th><th>📅</th><th>⚙️</th></tr></thead><tbody></tbody></table></div></div></div>
+
+<!-- ============ BANNED ============ -->
+<div class="pg" id="p-banned">
+<div class="pnl"><div class="ph"><h3>🚫 ʙᴀɴɴᴇᴅ</h3><button class="bt bgh bs" onclick="lb()">🔄</button></div>
+<div class="tw"><table id="bt"><thead><tr><th>👤</th><th>📅</th><th>⚙️</th></tr></thead><tbody></tbody></table></div></div></div>
+
+<!-- ============ COUPONS ============ -->
+<div class="pg" id="p-coupons">
+<div class="pnl"><div class="ph"><h3>🎟️ ᴄᴏᴜᴘᴏɴꜱ</h3><button class="bt bp bs" onclick="acm()">➕ ᴀᴅᴅ</button></div>
+<div class="tw"><table id="cpt"><thead><tr><th>🏷️</th><th>📊</th><th>💵</th><th>💵 ᴍɪɴ</th><th>📈</th><th>🔢</th><th>📅</th><th>📊</th><th>⚙️</th></tr></thead><tbody></tbody></table></div></div></div>
+
+<!-- ============ BROADCAST ============ -->
+<div class="pg" id="p-broadcast">
+<div class="pnl"><div class="ph"><h3>📣 ʙʀᴏᴀᴅᴄᴀꜱᴛ</h3></div>
+<div class="fg"><label>💬 ᴍꜱɢ (ʜᴛᴍʟ)</label><textarea id="bc-msg"></textarea></div>
+<div style="display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap">
+<label style="font-size:12px;color:rgba(255,255,255,.7);font-weight:800"><input type="checkbox" id="bc-buyers" checked> 👥 ʙᴜʏᴇʀꜱ</label>
+<label style="font-size:12px;color:rgba(255,255,255,.7);font-weight:800"><input type="checkbox" id="bc-known"> 👤 ᴋɴᴏᴡɴ</label>
+</div>
+<button class="bt bp" onclick="sendBC()">📣 ꜱᴇɴᴅ</button>
+<div id="bc-result" style="margin-top:16px"></div>
+</div></div>
+
+<!-- ============ NOTIFICATIONS ============ -->
+<div class="pg" id="p-notifications">
+<div class="pnl"><div class="ph"><h3>🔔 ꜱᴇɴᴅ ɴᴏᴛɪꜰɪᴄᴀᴛɪᴏɴ</h3></div>
+<div class="fr">
+<div class="fg"><label>👤 ᴜꜱᴇʀ ɪᴅ</label><input id="nt-uid" placeholder="123456789 ᴏʀ ᴀʟʟ"></div>
+<div class="fg"><label>📊 ᴛʏᴘᴇ</label><select id="nt-type"><option value="info">ℹ️ ɪɴꜰᴏ</option><option value="success">✅ ꜱᴜᴄᴄ</option><option value="warning">⚠️ ᴡᴀʀɴ</option><option value="promo">🎁 ᴘʀᴏᴍᴏ</option></select></div>
+</div>
+<div class="fg"><label>📌 ᴛɪᴛʟᴇ</label><input id="nt-title"></div>
+<div class="fg"><label>💬 ʙᴏᴅʏ</label><textarea id="nt-body"></textarea></div>
+<button class="bt bp" onclick="sendNotif()">🔔 ꜱᴇɴᴅ</button>
+</div></div>
+
+<!-- ============ ANNOUNCEMENT ============ -->
+<div class="pg" id="p-announce">
+<div class="pnl"><div class="ph"><h3>📢 ᴀɴɴᴏᴜɴᴄᴇᴍᴇɴᴛ</h3></div>
+<div class="fg"><label>📌 ᴛɪᴛʟᴇ</label><input id="an-title" placeholder="Special Offer!"></div>
+<div class="fg"><label>💬 ᴍꜱɢ</label><textarea id="an-text"></textarea></div>
+<div class="toggle-sw" onclick="toggleSetting('announcement_enabled',this)"><div class="sw" id="sw-ann"></div><label>📢 ᴇɴᴀʙʟᴇ</label></div>
+<button class="bt bp" onclick="saveAnn()">💾 ꜱᴀᴠᴇ</button>
+</div></div>
+
+<!-- ============ CHAT ============ -->
+<div class="pg" id="p-chat">
+<div class="pnl"><div class="ph"><h3>💬 ʟɪᴠᴇ ᴄʜᴀᴛ · ᴍᴇᴅɪᴀ</h3><button class="bt bgh bs" onclick="lc()">🔄</button></div>
+<div id="chatList" class="emp">⏳ ʟᴏᴀᴅɪɴɢ...</div></div></div>
+
+<!-- ============ RATINGS ============ -->
+<div class="pg" id="p-ratings">
+<div class="sg">
+<div class="sc"><div class="sh"><span class="sl">⭐ ᴀᴠɢ</span><div class="si">⭐</div></div><div class="sv" id="rt-avg">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">📊 ᴛᴏᴛᴀʟ</span><div class="si">📊</div></div><div class="sv" id="rt-count">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">🌟 5⭐</span><div class="si">🌟</div></div><div class="sv" id="rt-5">-</div></div>
+<div class="sc"><div class="sh"><span class="sl">💔 1⭐</span><div class="si">💔</div></div><div class="sv" id="rt-1">-</div></div>
+</div>
+<div class="pnl"><div class="ph"><h3>⭐ ᴀʟʟ ʀᴀᴛɪɴɢꜱ</h3><button class="bt bgh bs" onclick="loadRatings()">🔄</button></div>
+<div id="ratingsList" class="emp">⏳</div></div></div>
+
+<!-- ============ FAQS ============ -->
+<div class="pg" id="p-faqs">
+<div class="pnl"><div class="ph"><h3>❓ ꜰᴀQꜱ</h3><button class="bt bp bs" onclick="afq()">➕ ᴀᴅᴅ</button></div>
+<div id="faqList" class="emp">⏳</div></div></div>
+
+<!-- ============ TESTIMONIALS ============ -->
+<div class="pg" id="p-testimonials">
+<div class="pnl"><div class="ph"><h3>💬 ᴛᴇꜱᴛɪᴍᴏɴɪᴀʟꜱ</h3><button class="bt bp bs" onclick="atm()">➕ ᴀᴅᴅ</button></div>
+<div id="testList" class="emp">⏳</div></div></div>
+
+<!-- ============ SETTINGS ============ -->
+<div class="pg" id="p-settings">
+<div class="pnl"><div class="ph"><h3>⚙️ ꜱᴇᴛᴛɪɴɢꜱ</h3></div>
+<div class="fr">
+<div class="fg"><label>💳 ꜰᴀᴍɢᴀᴛᴇᴡᴀʏ ᴀᴘɪ ᴋᴇʏ</label><input id="st-fgk"></div>
+<div class="fg"><label>🏪 ꜱᴛᴏʀᴇ ɴᴀᴍᴇ</label><input id="st-name"></div>
+<div class="fg"><label>📞 ꜱᴜᴘᴘᴏʀᴛ ᴛɢ</label><input id="st-tg"></div>
+<div class="fg"><label>👑 ᴏᴡɴᴇʀ ᴛɢ ɪᴅ</label><input id="st-owner"></div>
+<div class="fg"><label>⚡ ᴍᴀx ᴛɪᴍᴇ</label><input id="st-mt" type="number" value="400"></div>
+<div class="fg"><label>🔢 ᴍᴀx ᴄᴏɴᴄ</label><input id="st-mc" type="number" value="4"></div>
+<div class="fg"><label>⏳ ᴄᴏᴏʟᴅᴏᴡɴ</label><input id="st-cd" type="number" value="60"></div>
+<div class="fg"><label>🖼️ ʙɢ ᴜʀʟ</label><input id="st-bg"></div>
+<div class="fg"><label>🎨 ʟᴏɢᴏ ᴜʀʟ</label><input id="st-logo"></div>
+<div class="fg"><label>💬 ᴡᴇʟᴄᴏᴍᴇ</label><input id="st-welcome"></div>
+<div class="fg"><label>🎁 ʀᴇꜰ ʀᴇᴡᴀʀᴅ</label><input id="st-refreward" type="number" value="50"></div>
+<div class="fg"><label>💸 ʀᴇꜰ ᴅɪꜱᴄ</label><input id="st-refdisc" type="number" value="20"></div>
+</div>
+<div class="toggle-sw" onclick="toggleSetting('maintenance_mode',this)"><div class="sw" id="sw-maint"></div><label>🔧 ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ</label></div>
+<div class="toggle-sw" onclick="toggleSetting('chat_enabled',this)"><div class="sw on" id="sw-chat"></div><label>💬 ʟɪᴠᴇ ᴄʜᴀᴛ</label></div>
+<div class="toggle-sw" onclick="toggleSetting('ratings_enabled',this)"><div class="sw on" id="sw-rt"></div><label>⭐ ʀᴀᴛɪɴɢꜱ</label></div>
+<div class="toggle-sw" onclick="toggleSetting('coupons_enabled',this)"><div class="sw on" id="sw-cp"></div><label>🎟️ ᴄᴏᴜᴘᴏɴꜱ</label></div>
+<button class="bt bp" onclick="ssv()">💾 ꜱᴀᴠᴇ</button>
+</div></div>
+
+<!-- ============ SYSTEM ============ -->
+<div class="pg" id="p-system">
+<div class="pnl"><div class="ph"><h3>💻 ꜱʏꜱᴛᴇᴍ ʜᴇᴀʟᴛʜ</h3></div>
+<div class="sg" id="healthGrid"><div class="emp">⏳</div></div></div>
+<div class="pnl"><div class="ph"><h3>🗄️ ᴅʙ ꜱᴛᴀᴛꜱ</h3></div>
+<div class="sg" id="dbStats"><div class="emp">⏳</div></div></div>
+</div>
+
+<!-- ============ BACKUP ============ -->
+<div class="pg" id="p-backup">
+<div class="pnl"><div class="ph"><h3>💾 ʙᴀᴄᴋᴜᴘ &amp; ʀᴇꜱᴛᴏʀᴇ</h3></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button class="bt bp" onclick="doBackup()">📥 ʙᴀᴄᴋᴜᴘ</button>
+<button class="bt bi" onclick="document.getElementById('restoreFile').click()">📤 ʀᴇꜱᴛᴏʀᴇ</button>
+<input type="file" id="restoreFile" accept=".json" style="display:none" onchange="doRestore(event)">
+</div>
+<div id="backupResult" style="margin-top:16px"></div>
+</div></div>
+
+<!-- ============ LOGS ============ -->
+<div class="pg" id="p-logs">
+<div class="pnl"><div class="ph"><h3>📋 ᴀᴜᴅɪᴛ ʟᴏɢꜱ</h3><button class="bt bgh bs" onclick="ll()">🔄</button></div>
+<div class="tw"><table id="lt"><thead><tr><th>⏰</th><th>👤</th><th>⚡</th><th>📝</th></tr></thead><tbody></tbody></table></div></div></div>
+</main>
+
+<!-- ============ MODAL ============ -->
+<div class="ov" id="ov"><div class="mdl" id="mc"></div></div>
+
+<!-- ============ COMMAND PALETTE ============ -->
+<div id="cmdPalette" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(24px);z-index:100000;align-items:flex-start;justify-content:center;padding-top:12vh">
+  <div style="background:rgba(10,10,15,.98);border:1px solid rgba(255,215,0,.35);border-radius:22px;width:100%;max-width:620px;box-shadow:0 40px 120px rgba(255,215,0,.2);overflow:hidden">
+    <div style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:14px">
+      <span style="font-size:22px;color:#FFD700;filter:drop-shadow(0 0 8px #FFD70088)">⌘</span>
+      <input id="cmdInput" placeholder="Type a command or search..." autocomplete="off" style="flex:1;background:transparent;border:none;color:#fff;font-size:16px;outline:none;font-family:inherit;font-weight:600">
+      <kbd style="padding:4px 10px;background:rgba(255,255,255,.06);border-radius:6px;font-size:10px;color:rgba(255,255,255,.5);font-weight:800;letter-spacing:1px">ESC</kbd>
+    </div>
+    <div id="cmdResults" style="max-height:460px;overflow-y:auto;padding:10px"></div>
+    <div style="padding:12px 24px;border-top:1px solid rgba(255,255,255,.06);display:flex;gap:20px;font-size:10px;color:rgba(255,255,255,.4);font-weight:800;letter-spacing:1.5px;text-transform:uppercase">
+      <span>↑↓ Navigate</span><span>↵ Select</span><span>ESC Close</span>
+    </div>
+  </div>
+</div>
+
+<div class="tc2" id="tcc"></div>
+
+<script>
+// ═══════════════ COMMAND PALETTE ═══════════════
+const CMD_LIST = [
+  { icon: '📊', label: 'Dashboard',       shortcut: '⌘1', action: () => go('dash') },
+  { icon: '📦', label: 'Orders',          shortcut: '⌘2', action: () => go('orders') },
+  { icon: '📈', label: 'Analytics',       shortcut: '⌘3', action: () => go('analytics') },
+  { icon: '🏆', label: 'Leaderboard',     shortcut: '⌘4', action: () => go('leaderboard') },
+  { icon: '👁️', label: 'Visitors',        shortcut: '⌘5', action: () => go('visitors') },
+  { icon: '⚡', label: 'Command Logs',    shortcut: '⌘6', action: () => go('commands') },
+  { icon: '🔑', label: 'Products',        shortcut: '⌘7', action: () => go('products') },
+  { icon: '✨', label: 'Generate Keys',   shortcut: '⌘K', action: () => go('genkey') },
+  { icon: '🔐', label: 'Active Keys',     shortcut: '',   action: () => go('keys') },
+  { icon: '✅', label: 'Redeemed Keys',   shortcut: '',   action: () => go('redeemed') },
+  { icon: '👤', label: 'Users',           shortcut: '',   action: () => go('users') },
+  { icon: '🤝', label: 'Helpers',         shortcut: '',   action: () => go('helpers') },
+  { icon: '👶', label: 'VIP Users',       shortcut: '',   action: () => go('vips') },
+  { icon: '🎟️', label: 'Coupons',        shortcut: '',   action: () => go('coupons') },
+  { icon: '📣', label: 'Broadcast',       shortcut: '',   action: () => go('broadcast') },
+  { icon: '🔔', label: 'Notifications',   shortcut: '',   action: () => go('notifications') },
+  { icon: '📢', label: 'Announcement',    shortcut: '',   action: () => go('announce') },
+  { icon: '💬', label: 'Live Chat',       shortcut: '',   action: () => go('chat') },
+  { icon: '⭐', label: 'Ratings',         shortcut: '',   action: () => go('ratings') },
+  { icon: '❓', label: 'FAQs',            shortcut: '',   action: () => go('faqs') },
+  { icon: '💬', label: 'Testimonials',    shortcut: '',   action: () => go('testimonials') },
+  { icon: '⚙️', label: 'Settings',        shortcut: '',   action: () => go('settings') },
+  { icon: '💻', label: 'System Health',   shortcut: '',   action: () => go('system') },
+  { icon: '💾', label: 'Backup',          shortcut: '',   action: () => go('backup') },
+  { icon: '📋', label: 'Audit Logs',      shortcut: '',   action: () => go('logs') },
+];
+
+let cmdSelectedIndex = 0;
+let cmdFiltered = [...CMD_LIST];
+
+function openCmdPalette() {
+  document.getElementById('cmdPalette').style.display = 'flex';
+  const input = document.getElementById('cmdInput');
+  input.value = '';
+  input.focus();
+  cmdSelectedIndex = 0;
+  cmdFiltered = [...CMD_LIST];
+  renderCmdResults();
+}
+function closeCmdPalette() { document.getElementById('cmdPalette').style.display = 'none'; }
+function renderCmdResults() {
+  const container = document.getElementById('cmdResults');
+  if (!cmdFiltered.length) {
+    container.innerHTML = '<div style="padding:40px;text-align:center;color:rgba(255,255,255,.4);font-size:12px;font-weight:700;letter-spacing:1px">🔍 No commands found</div>';
+    return;
+  }
+  container.innerHTML = cmdFiltered.map((c, i) => `
+    <div class="cmd-item ${i === cmdSelectedIndex ? 'selected' : ''}" onclick="execCmd(${i})" onmouseover="cmdSelectedIndex=${i};renderCmdResults()">
+      <span class="cmd-icon">${c.icon}</span><span class="cmd-label">${c.label}</span>
+      ${c.shortcut ? `<span class="cmd-shortcut">${c.shortcut}</span>` : ''}
+    </div>`).join('');
+}
+function execCmd(i) {
+  if (cmdFiltered[i]) { closeCmdPalette(); setTimeout(() => cmdFiltered[i].action(), 100); }
+}
+function filterCmds(q) {
+  q = q.toLowerCase().trim();
+  cmdFiltered = q ? CMD_LIST.filter(c => c.label.toLowerCase().includes(q)) : [...CMD_LIST];
+  cmdSelectedIndex = 0;
+  renderCmdResults();
+}
+
+// ═══════════════ TOAST ═══════════════
+function toast(m,t='info'){const c=document.getElementById('tcc');const e=document.createElement('div');e.className='tst '+t;e.textContent=m;c.appendChild(e);setTimeout(()=>{e.style.opacity='0';e.style.transform='translateX(100px)';setTimeout(()=>e.remove(),300)},3500);}
+
+// ═══════════════ MODAL ═══════════════
+function om(h){document.getElementById('mc').innerHTML=h;document.getElementById('ov').classList.add('active');}
+function cm(){document.getElementById('ov').classList.remove('active');}
+document.getElementById('ov').addEventListener('click',e=>{if(e.target.id==='ov')cm();});
+
+// ═══════════════ API HELPER ═══════════════
+async function api(ep,o={}){try{const r=await fetch('/api'+ep,{headers:{'Content-Type':'application/json'},...o});if(r.status===401){window.location.href='/login';return null;}return await r.json();}catch(e){toast('❌ ERROR','e');return null;}}
+
+// ═══════════════ UTILS ═══════════════
+function fd(iso){if(!iso)return'-';try{const d=new Date(iso);const o={timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true};return new Intl.DateTimeFormat('en-IN',o).format(d)+' IST';}catch{return iso;}}
+function cpt(t){navigator.clipboard.writeText(t).then(()=>toast('✅ ᴄᴏᴘɪᴇᴅ','s'));}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function tickIST(){const now=new Date();const opts={timeZone:'Asia/Kolkata',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true};const el=document.getElementById('ist-clock');if(el)el.textContent=new Intl.DateTimeFormat('en-IN',opts).format(now)+' IST';}
+tickIST(); setInterval(tickIST, 1000);
+
+function countUp(el, target, duration=1200) {
+  if (!el) return;
+  const start = parseInt(el.textContent.replace(/[^\d]/g, '')) || 0;
+  const startTime = performance.now();
+  function tick(now) {
+    const p = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(start + (target - start) * eased);
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+// ═══════════════ NAV ═══════════════
+let cp='dash',cachedKeys=[],cachedRedeemed=[],newOrderCount=0;
+function go(p,el){
+  document.querySelectorAll('.pg').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(x=>x.classList.remove('active'));
+  const pe=document.getElementById('p-'+p);
+  if(pe)pe.classList.add('active');
+  if(el)el.classList.add('active');else{
+    document.querySelectorAll('.ni').forEach(x=>{if(x.getAttribute('onclick')?.includes(`'${p}'`))x.classList.add('active')});
+  }
+  cp=p;cm();
+  const L={dash:ld,orders:ldAdvancedOrders,products:lpr,keys:lk,redeemed:lr,users:lus,known:lk2,banned:lb,settings:lst,logs:ll,chat:lc,analytics:la,ratings:loadRatings,coupons:lcp,announce:loadAnn,faqs:lfq,testimonials:lts,leaderboard:lleader,system:lsys,visitors:lv,commands:lcmd,helpers:lHelp,vips:lVip};
+  if(L[p])L[p]();
+  if(window.innerWidth<=900)document.getElementById('sb').classList.remove('open');
+}
+function rf(){go(cp,document.querySelector('.ni.active'));}
+
+// ═══════════════ DASHBOARD ═══════════════
+async function ld(){
+  const d = await api('/stats');if(!d)return;
+  countUp(document.getElementById('s-orders'), d.total_orders||0);
+  countUp(document.getElementById('s-paid'), d.paid_orders||0);
+  countUp(document.getElementById('s-pending'), d.pending_orders||0);
+  countUp(document.getElementById('s-products'), d.total_products||0);
+  countUp(document.getElementById('s-keys'), d.total_keys||0);
+  countUp(document.getElementById('s-active-keys'), d.active_keys||0);
+  countUp(document.getElementById('s-users'), d.store_users||0);
+  countUp(document.getElementById('s-vips'), d.vip_users||0);
+  countUp(document.getElementById('s-helpers'), d.helpers||0);
+  countUp(document.getElementById('s-visits'), d.today_visits||0);
+  const revEl = document.getElementById('s-revenue');
+  if (revEl) {
+    const startVal = parseInt(revEl.textContent.replace(/[^\d]/g,'')) || 0;
+    const targetVal = d.total_revenue || 0;
+    const st = performance.now();
+    (function tickRev(now){
+      const p = Math.min((now-st)/1200,1);
+      const eased = 1-Math.pow(1-p,3);
+      revEl.textContent = '₹'+Math.round(startVal+(targetVal-startVal)*eased);
+      if(p<1) requestAnimationFrame(tickRev);
+    })(performance.now());
+  }
+  document.getElementById('s-rating').textContent = (d.avg_rating||0).toFixed(1);
+  const sys = await api('/system-stats');
+  if(sys){document.getElementById('s-cpu').textContent=sys.cpu_percent+'%';document.getElementById('s-ram').textContent=sys.memory_percent+'%';}
+  const o = await api('/recent-orders');
+  const tb = document.querySelector('#ro tbody');
+  if(o&&o.length){tb.innerHTML=o.map(x=>`<tr><td>${fd(x.created_at)}</td><td><span class="cd">${x.order_id}</span></td><td>${esc(x.product_name)||'-'}</td><td><b style="color:#00FF88">₹${x.amount}</b></td><td><span class="bdg ${x.status==='success'?'bgs':x.status==='pending'?'bgw':'bgd'}">${x.status}</span></td></tr>`).join('');}
+  else tb.innerHTML='<tr><td colspan="5" class="emp">📭</td></tr>';
+  const ch = await api('/chart-7d');
+  const cbox = document.getElementById('chart7');
+  if(ch&&ch.length){const maxV=Math.max(...ch.map(x=>x.revenue),1);cbox.innerHTML=ch.map(x=>`<div class="chart-row"><div class="chart-lbl">${x.label}</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:${Math.max(5,(x.revenue/maxV)*100)}%">₹${x.revenue}</div></div></div>`).join('');}
+  else cbox.innerHTML='<div class="emp">📭</div>';
+}
+
+// ═══════════════ VISITORS / COMMANDS ═══════════════
+async function lv(){const d=await api('/visitors');const c=document.getElementById('visitorList');if(!d||!d.length){c.innerHTML='<div class="emp">📭</div>';return;}c.innerHTML=d.map(v=>`<div class="visitor-row"><span class="vip">🌐 ${esc(v.ip)}</span><span class="vpath">${esc(v.device)} → ${esc(v.path)}</span><span class="vtime">${fd(v.time)}</span></div>`).join('');}
+async function lcmd(){const d=await api('/command-logs');const c=document.getElementById('commandList');if(!d||!d.length){c.innerHTML='<div class="emp">📭</div>';return;}c.innerHTML=d.map(x=>`<div class="visitor-row"><span class="vip">👤 ${esc(x.user_id)}</span><span class="vpath">⚡ ${esc(x.command)} — ${esc(x.details||'-')}</span><span class="vtime">${fd(x.time)}</span></div>`).join('');}
+
+// ═══════════════ ORDERS ═══════════════
+function orderDetail(oid){
+  api('/order-detail/'+oid).then(o=>{
+    if(!o)return;
+    om(`<h3>📋 ᴅᴇᴛᴀɪʟꜱ</h3><div style="font-size:12px;line-height:2;color:rgba(255,255,255,.8)"><div>🆔 <b>Order:</b> <span class="cd">${esc(o.order_id)}</span></div><div>👤 <b>Customer:</b> ${esc(o.customer_name||'-')}</div><div>📨 <b>TG:</b> ${esc(o.telegram_id||'-')}</div><div>📦 <b>Product:</b> ${esc(o.product_name||'-')}</div><div>💵 <b>Amount:</b> ₹${o.amount}</div><div>📊 <b>Status:</b> ${o.status}</div><div>🔑 <b>Key:</b> <code style="color:#00FF88">${esc(o.key||'-')}</code></div></div><div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"><button class="bt bp" onclick="openComment('order','${o.order_id}','<b>${esc(o.product_name||'Order')}</b> · ₹${o.amount}')">💎 ᴄᴏᴍᴍᴇɴᴛꜱ</button><button class="bt bd" onclick="cm()">ᴄʟᴏꜱᴇ</button></div>`);
+  });
+}
+async function resendKey(oid){const r=await api('/resend-key',{method:'POST',body:JSON.stringify({order_id:oid})});if(r?.success)toast('📨 ꜱᴇɴᴛ','s');else toast('❌','e');}
+async function exportCSV(){window.location.href='/api/export-orders';}
+
+// ═══════════════ ANALYTICS / LEADERBOARD ═══════════════
+async function la(){const d=await api('/analytics');if(!d)return;document.getElementById('a-today').textContent='₹'+(d.today||0);document.getElementById('a-week').textContent='₹'+(d.week||0);document.getElementById('a-month').textContent='₹'+(d.month||0);document.getElementById('a-avg').textContent='₹'+(d.avg||0);const t=document.getElementById('a-top');if(d.top&&d.top.length){t.innerHTML=d.top.map(x=>`<div style="display:flex;justify-content:space-between;padding:10px 14px;background:rgba(0,0,0,.3);border-radius:10px;margin-bottom:8px"><span style="font-weight:800">📦 ${esc(x._id)}</span><span><span class="bdg bgs">${x.count}</span> <span class="cd">₹${x.revenue}</span></span></div>`).join('');}else t.innerHTML='<div class="emp">📭</div>';}
+async function lleader(){const d=await api('/leaderboard');const c=document.getElementById('leaderboardList');if(!d||!d.length){c.innerHTML='<div class="emp">📭</div>';return;}c.innerHTML=d.map((u,i)=>{let m='';if(i===0)m='🥇';else if(i===1)m='🥈';else if(i===2)m='🥉';else m=`#${i+1}`;return `<div class="top-row"><div class="top-rank">${m}</div><div class="top-uid">👤 ${esc(u.user_id)}</div><div class="top-val">💰 ₹${u.spent}</div></div>`;}).join('');}
+
+// ═══════════════ SYSTEM ═══════════════
+async function lsys(){
+  const h=await api('/system-health');const d=await api('/db-stats');
+  const hg=document.getElementById('healthGrid');
+  if(h){hg.innerHTML=`<div class="sc"><div class="sh"><span class="sl">🖥️ ᴄᴘᴜ</span><div class="si">⚙️</div></div><div class="sv">${h.cpu}%</div></div><div class="sc"><div class="sh"><span class="sl">💾 ʀᴀᴍ</span><div class="si">🧠</div></div><div class="sv">${h.ram}%</div></div><div class="sc"><div class="sh"><span class="sl">💿 ᴅɪꜱᴋ</span><div class="si">📀</div></div><div class="sv">${h.disk}%</div></div><div class="sc"><div class="sh"><span class="sl">⏱️ ᴜᴘᴛɪᴍᴇ</span><div class="si">🕐</div></div><div class="sv" style="font-size:20px">${h.uptime}</div></div>`;}
+  const dbs=document.getElementById('dbStats');
+  if(d){dbs.innerHTML=Object.keys(d).map(k=>`<div class="sc"><div class="sh"><span class="sl">📁 ${k.toUpperCase()}</span><div class="si">🗄️</div></div><div class="sv">${d[k]}</div></div>`).join('');}
+}
+async function doBackup(){toast('📥 ᴘʀᴇᴘᴀʀɪɴɢ','s');window.open('/api/backup','_blank');}
+function doRestore(e){const f=e.target.files[0];if(!f)return;if(!confirm('⚠️ Restore?'))return;const reader=new FileReader();reader.onload=async ev=>{try{const data=JSON.parse(ev.target.result);const r=await api('/restore',{method:'POST',body:JSON.stringify(data)});if(r?.success){document.getElementById('backupResult').innerHTML=`<div style="padding:14px;background:rgba(0,255,136,.1);border:1px solid #00FF88;border-radius:12px;color:#00FF88;font-weight:800">✅ ${r.count}</div>`;toast('✅','s');}}catch(err){toast('❌','e');}};reader.readAsText(f);}
+
+// ═══════════════ PRODUCTS ═══════════════
+async function lpr(){const d=await api('/products-admin');const tb=document.querySelector('#pt tbody');if(!d||!d.length){tb.innerHTML='<tr><td colspan="11" class="emp">📭</td></tr>';return;}tb.innerHTML=d.map(p=>`<tr><td><span class="cd">${p._id}</span></td><td><b>${esc(p.name)}</b></td><td><span class="bdg bgi">${esc(p.category||'-')}</span></td><td>${esc(p.duration)}</td><td>${p.hours}H</td><td><b style="color:#00FF88">₹${p.price}</b></td><td>${p.max_time||400}S</td><td>${p.max_concurrent||4}</td><td>${p.popular?'<span class="bdg bgw">🔥</span>':'-'}</td><td><span class="bdg ${p.active?'bgs':'bgd'}">${p.active?'✅':'❌'}</span></td><td><button class="bt bi bx" onclick="epr('${p._id}')">✏️</button><button class="bt ${p.active?'bw':'bg'} bx" onclick="tpr('${p._id}')">${p.active?'OFF':'ON'}</button><button class="bt bd bx" onclick="dpr('${p._id}')">🗑️</button></td></tr>`).join('');}
+function bulkPrice(){om(`<h3>💰 ʙᴜʟᴋ ᴘʀɪᴄᴇ</h3><div class="fr"><div class="fg"><label>⭐ ᴄᴀᴛ</label><input id="bp-cat" value="ALL"></div><div class="fg"><label>⚙️ ᴏᴘ</label><select id="bp-op"><option value="pct">%</option><option value="fixed">₹</option></select></div><div class="fg"><label>🔢 ᴠᴀʟ</label><input id="bp-val" type="number" value="10"></div></div><div style="display:flex;gap:10px"><button class="bt bp" onclick="doBulkPrice()">✅</button><button class="bt bgh" onclick="cm()">❌</button></div>`);}
+async function doBulkPrice(){const cat=document.getElementById('bp-cat').value.trim().toUpperCase();const op=document.getElementById('bp-op').value;const val=+document.getElementById('bp-val').value;const r=await api('/bulk-price-update',{method:'POST',body:JSON.stringify({category:cat,op,value:val})});if(r?.success){toast(`✅ ${r.count}`,'s');cm();lpr();}}
+function apm(){om(`<h3>➕ ᴀᴅᴅ ᴘʀᴏᴅᴜᴄᴛ</h3><div class="fr"><div class="fg"><label>🆔</label><input id="np-id"></div><div class="fg"><label>📛 ɴᴀᴍᴇ</label><input id="np-name"></div><div class="fg"><label>⭐ ᴄᴀᴛ</label><input id="np-cat"></div><div class="fg"><label>⏱ ᴅᴜʀ</label><input id="np-dur"></div><div class="fg"><label>🕐 ʜ</label><input id="np-h" type="number" value="8"></div><div class="fg"><label>💵 ₹</label><input id="np-price" type="number" value="100"></div><div class="fg"><label>⚡ ᴍᴀx ᴛ</label><input id="np-mt" type="number" value="400"></div><div class="fg"><label>🔢 ᴄᴏɴᴄ</label><input id="np-mc" type="number" value="4"></div><div class="fg"><label>⏳ ᴄᴅ</label><input id="np-cd" type="number" value="60"></div><div class="fg"><label>🔥 ᴘᴏᴘ</label><select id="np-pop"><option value="false">ɴᴏ</option><option value="true">ʏᴇꜱ</option></select></div></div><div style="display:flex;gap:10px;margin-top:14px"><button class="bt bp" onclick="dap()">➕</button><button class="bt bgh" onclick="cm()">❌</button></div>`);}
+async function dap(){const d={id:document.getElementById('np-id').value.trim(),name:document.getElementById('np-name').value.trim(),category:document.getElementById('np-cat').value.trim(),duration:document.getElementById('np-dur').value.trim(),hours:+document.getElementById('np-h').value,price:+document.getElementById('np-price').value,max_time:+document.getElementById('np-mt').value,max_concurrent:+document.getElementById('np-mc').value,cooldown:+document.getElementById('np-cd').value,popular:document.getElementById('np-pop').value==='true'};if(!d.id||!d.name){toast('⚠️ ꜰɪʟʟ','e');return;}const r=await api('/add-product',{method:'POST',body:JSON.stringify(d)});if(r?.success){toast('✅','s');cm();lpr();}else toast('❌ '+(r?.error||'ꜰᴀɪʟ'),'e');}
+function epr(id){api('/product/'+id).then(p=>{if(!p)return;om(`<h3>✏️ ᴇᴅɪᴛ</h3><div class="fr"><div class="fg"><label>📛</label><input id="ep-name" value="${esc(p.name)}"></div><div class="fg"><label>⭐</label><input id="ep-cat" value="${esc(p.category||'')}"></div><div class="fg"><label>⏱</label><input id="ep-dur" value="${esc(p.duration)}"></div><div class="fg"><label>🕐</label><input id="ep-h" type="number" value="${p.hours}"></div><div class="fg"><label>💵</label><input id="ep-price" type="number" value="${p.price}"></div><div class="fg"><label>⚡</label><input id="ep-mt" type="number" value="${p.max_time||400}"></div><div class="fg"><label>🔢</label><input id="ep-mc" type="number" value="${p.max_concurrent||4}"></div><div class="fg"><label>⏳</label><input id="ep-cd" type="number" value="${p.cooldown||60}"></div><div class="fg"><label>🔥</label><select id="ep-pop"><option value="false" ${!p.popular?'selected':''}>ɴᴏ</option><option value="true" ${p.popular?'selected':''}>ʏᴇꜱ</option></select></div></div><div style="display:flex;gap:10px;margin-top:14px"><button class="bt bp" onclick="dep('${id}')">💾</button><button class="bt bgh" onclick="cm()">❌</button></div>`);});}
+async function dep(id){const d={name:document.getElementById('ep-name').value.trim(),category:document.getElementById('ep-cat').value.trim(),duration:document.getElementById('ep-dur').value.trim(),hours:+document.getElementById('ep-h').value,price:+document.getElementById('ep-price').value,max_time:+document.getElementById('ep-mt').value,max_concurrent:+document.getElementById('ep-mc').value,cooldown:+document.getElementById('ep-cd').value,popular:document.getElementById('ep-pop').value==='true'};const r=await api('/update-product/'+id,{method:'POST',body:JSON.stringify(d)});if(r?.success){toast('✅','s');cm();lpr();}}
+async function tpr(id){const r=await api('/toggle-product/'+id,{method:'POST'});if(r?.success){toast('✅','s');lpr();}}
+async function dpr(id){if(!confirm('🗑️?'))return;const r=await api('/delete-product/'+id,{method:'POST'});if(r?.success){toast('🗑️','s');lpr();}}
+
+// ═══════════════ GENERATE KEYS ═══════════════
+async function gk(){const d={prefix:document.getElementById('gp').value.trim()||'VIP',duration:document.getElementById('gd').value,count:+document.getElementById('gc').value,max_time:+document.getElementById('gmt').value,cooldown:+document.getElementById('gcd').value};const r=await api('/generate-keys',{method:'POST',body:JSON.stringify(d)});if(r?.success){toast(`✅ ${r.count}`,'s');document.getElementById('gr').innerHTML=`<div class="pnl"><div class="ph"><h3>✅ ${r.count} ᴋᴇʏꜱ</h3><button class="bt bi bs" onclick="cbk()">📋</button></div><div>${r.codes.map(c=>`<div style="font-family:monospace;background:rgba(255,215,0,.05);padding:12px 16px;border-radius:11px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,215,0,.3)"><span style="color:#FFD700;font-weight:700">🔑 ${c}</span><button class="bt bgh bx" onclick="cpt('${c}')">📋</button></div>`).join('')}</div></div>`;window.__lk=r.codes;}}
+function cbk(){if(window.__lk){navigator.clipboard.writeText(window.__lk.join('\n')).then(()=>toast('✅ ᴀʟʟ ᴄᴏᴘɪᴇᴅ','s'));}}
+
+// ═══════════════ KEYS ═══════════════
+async function lk(){const q=(document.getElementById('keySearch')?.value||'').toLowerCase();const d=await api('/active-keys');cachedKeys=d||[];const tb=document.querySelector('#kt tbody');if(!d||!d.length){tb.innerHTML='<tr><td colspan="6" class="emp">📭</td></tr>';return;}let f=d;if(q)f=d.filter(k=>(k.code||'').toLowerCase().includes(q));tb.innerHTML=f.slice(0,300).map(k=>`<tr><td><span class="cd">🔑 ${k.code}</span></td><td><span class="bdg bgp">${k.type||'-'}</span></td><td>${esc(k.duration_label)||'-'}</td><td>${fd(k.expires)}</td><td>${k.max_duration||400}S</td><td><button class="bt bi bx" onclick="extendKey('${k.code}')">⏰</button><button class="bt bgh bx" onclick="cpt('${k.code}')">📋</button><button class="bt bd bx" onclick="deleteKey('${k.code}')">🗑️</button></td></tr>`).join('');}
+async function deleteKey(code){if(!confirm('🗑️?'))return;const r=await api('/delete-key',{method:'POST',body:JSON.stringify({code})});if(r?.success){toast('🗑️','s');lk();}}
+function extendKey(code){om(`<h3>⏰ ᴇxᴛᴇɴᴅ</h3><div class="fg"><label>🔑</label><input value="${code}" disabled></div><div class="fg"><label>📅 ʜᴏᴜʀꜱ</label><input id="ext-h" type="number" value="24"></div><div style="display:flex;gap:10px;margin-top:14px"><button class="bt bp" onclick="doExtendKey('${code}')">⏰</button><button class="bt bgh" onclick="cm()">❌</button></div>`);}
+async function doExtendKey(code){const hrs=+document.getElementById('ext-h').value;const r=await api('/extend-key',{method:'POST',body:JSON.stringify({code,hours:hrs})});if(r?.success){toast('⏰','s');cm();lk();}}
+async function deleteExpiredKeys(){if(!confirm('🗑️?'))return;const r=await api('/clean-expired-keys',{method:'POST'});if(r?.success){toast('🗑️ '+r.count,'s');lk();}}
+function bulkCopyKeys(){if(!cachedKeys.length){toast('📭','e');return;}navigator.clipboard.writeText(cachedKeys.map(k=>k.code).join('\n')).then(()=>toast('📋','s'));}
+function exportKeys(){window.location.href='/api/export-keys';}
+
+// ═══════════════ REDEEMED ═══════════════
+async function lr(){const q=(document.getElementById('redSearch')?.value||'').toLowerCase();const d=await api('/redeemed-keys');cachedRedeemed=d||[];const tb=document.querySelector('#rt tbody');if(!d||!d.length){tb.innerHTML='<tr><td colspan="5" class="emp">📭</td></tr>';return;}let f=d;if(q)f=d.filter(k=>(k.code||'').toLowerCase().includes(q)||(k.redeemed_by||'').toLowerCase().includes(q));tb.innerHTML=f.slice(0,300).map(k=>`<tr><td><span class="cd">🔑 ${k.code}</span></td><td><span class="cd">👤 ${k.redeemed_by}</span></td><td>${fd(k.redeemed_at)}</td><td>${fd(k.expires)}</td><td><button class="bt bi bx" onclick="cpt('${k.code}')">📋</button><button class="bt bw bx" onclick="sendKeyDM('${k.redeemed_by}','${k.code}')">📨</button><button class="bt bd bx" onclick="revokeKey('${k.code}')">🚫</button></td></tr>`).join('');}
+async function sendKeyDM(uid,code){const msg='🔑 Your Key: <code>'+code+'</code>\n\n⚡ Flash Premium';const r=await api('/send-dm',{method:'POST',body:JSON.stringify({user_id:uid,message:msg})});if(r?.success)toast('📨','s');}
+async function revokeKey(code){if(!confirm('🚫?'))return;const r=await api('/revoke-key',{method:'POST',body:JSON.stringify({code})});if(r?.success){toast('🚫','s');lr();}}
+async function revokeExpired(){if(!confirm('🚫?'))return;const r=await api('/revoke-expired',{method:'POST'});if(r?.success){toast('🚫 '+r.count,'s');lr();}}
+function exportRedeemed(){window.location.href='/api/export-redeemed';}
+
+// ═══════════════ USERS ═══════════════
+async function lus(){const d=await api('/store-users');const tb=document.querySelector('#ut tbody');if(!d||!d.length){tb.innerHTML='<tr><td colspan="5" class="emp">📭</td></tr>';return;}tb.innerHTML=d.map(u=>`<tr><td><span class="cd">👤 ${u.user_id}</span></td><td>${fd(u.created_at)}</td><td>${u.total_orders||0}</td><td><b style="color:#00FF88">₹${u.balance||0}</b></td><td><button class="bt bi bx" onclick="userDetail('${u.user_id}')">🔍</button><button class="bt bp2 bx" onclick="addBal('${u.user_id}')">💰</button><button class="bt bw bx" onclick="openUserLocks('${u.user_id}')">🔒</button></td></tr>`).join('');}
+function userDetail(uid){api('/user-detail/'+uid).then(u=>{if(!u)return;om(`<h3>👤 ᴜꜱᴇʀ ᴅᴇᴛᴀɪʟꜱ</h3><div style="font-size:12px;line-height:2"><div>👤 <b>ID:</b> <span class="cd">${esc(u.user_id)}</span></div><div>📦 <b>Orders:</b> ${u.total_orders}</div><div>💰 <b>Spent:</b> ₹${u.spent}</div><div>💳 <b>Balance:</b> ₹${u.balance}</div><div>⭐ <b>Tier:</b> ${u.tier}</div></div><div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><button class="bt bp" onclick="addBal('${u.user_id}')">💰</button><button class="bt bp2" onclick="openComment('user','${u.user_id}','<b>User ${u.user_id}</b> · ${u.total_orders} orders')">💎 ᴄᴏᴍᴍᴇɴᴛꜱ</button><button class="bt bgh" onclick="cm()">ᴄʟᴏꜱᴇ</button></div>`);});}
+function addBal(uid){om(`<h3>💰 ᴀᴅᴅ ʙᴀʟ</h3><div class="fg"><label>💵 ₹</label><input id="bal-amt" type="number"></div><div class="fg"><label>📝 ɴᴏᴛᴇ</label><input id="bal-note"></div><div style="display:flex;gap:10px;margin-top:14px"><button class="bt bp" onclick="doAddBal('${uid}')">➕</button><button class="bt bgh" onclick="cm()">❌</button></div>`);}
+async function doAddBal(uid){const amt=+document.getElementById('bal-amt').value;const note=document.getElementById('bal-note').value.trim()||'Credit';if(!amt||amt<=0){toast('⚠️','e');return;}const r=await api('/add-balance',{method:'POST',body:JSON.stringify({user_id:uid,amount:amt,note})});if(r?.success){toast('💰','s');cm();lus();}}
+
+// ═══════════════ HELPERS ═══════════════
+async function lHelp(){const d=await api('/helpers');const tb=document.querySelector('#hlt tbody');if(!d||!d.length){tb.innerHTML='<tr><td colspan="4" class="emp">📭 ɴᴏ ʜᴇʟᴘᴇʀꜱ</td></tr>';return;}tb.innerHTML=d.map(h=>`<tr><td><span class="cd">🤝 ${esc(h.username)}</span></td><td>${fd(h.added_at)}</td><td><span class="bdg ${h.active?'bgs':'bgd'}">${h.active?'✅ ᴀᴄᴛɪᴠᴇ':'❌ ᴏꜰꜰ'}</span></td><td><button class="bt bd bx" onclick="delHelper('${h.username}')">🗑️</button></td></tr>`).join('');}
+function addHelper(){om(`<h3>🤝 ᴀᴅᴅ ʜᴇʟᴘᴇʀ</h3><div class="fg"><label>👤 ᴜꜱᴇʀɴᴀᴍᴇ</label><input id="h-user"></div><div class="fg"><label>🔑 ᴘᴀꜱꜱᴡᴏʀᴅ</label><input id="h-pass" type="text"></div><div style="display:flex;gap:10px;margin-top:14px"><button class="bt bp" onclick="doAddHelper()">➕</button><button class="bt bgh" onclick="cm()">❌</button></div>`);}
+async function doAddHelper(){const u=document.getElementById('h-user').value.trim();const p=document.getElementById('h-pass').value.trim();if(!u||!p){toast('⚠️','e');return;}const r=await api('/add-helper',{method:'POST',body:JSON.stringify({username:u,password:p})});if(r?.success){toast('✅','s');cm();lHelp();}else toast('❌','e');}
+async function delHelper(u){if(!confirm('🗑️?'))return;const r=await api('/delete-helper',{method:'POST',body:JSON.stringify({username:u})});if(r?.success){toast('🗑️','s');lHelp();}}
+
+// ═══════════════ VIPS / KNOWN / BANNED ═══════════════
+function lVip(){const list=document.getElementById('vipList');const vips=['baby'];list.innerHTML=vips.map(v=>`<div class="top-row"><div class="top-rank">👶</div><div class="top-uid">${esc(v)}</div><div class="top-val">ᴠɪᴘ</div></div>`).join('');}
+async function lk2(){const d=await api('/known-users');const tb=document.querySelector('#kt2 tbody');if(!d||!d.length){tb.innerHTML='<tr><td colspan="3" class="emp">📭</td></tr>';return;}tb.innerHTML=d.map(u=>`<tr><td><span class="cd">👤 ${u.user_id}</span></td><td>${fd(u.last_seen)}</td><td><button class="bt bd bx" onclick="bn('${u.user_id}')">🚫</button></td></tr>`).join('');}
+async function bn(id){if(!confirm('🚫?'))return;const r=await api('/ban',{method:'POST',body:JSON.stringify({user_id:id})});if(r?.success){toast('🚫','s');lk2();}}
+async function lb(){const d=await api('/banned');const tb=document.querySelector('#bt tbody');if(!d||!d.length){tb.innerHTML='<tr><td colspan="3" class="emp">📭</td></tr>';return;}tb.innerHTML=d.map(b=>`<tr><td><span class="cd">👤 ${b.user_id}</span></td><td>${fd(b.banned_at)}</td><td><button class="bt bg bx" onclick="ub('${b.user_id}')">✅</button></td></tr>`).join('');}
+async function ub(id){const r=await api('/unban',{method:'POST',body:JSON.stringify({user_id:id})});if(r?.success){toast('✅','s');lb();}}
+
+// ═══════════════ COUPONS ═══════════════
+async function lcp(){const d=await api('/coupons');const tb=document.querySelector('#cpt tbody');if(!d||!d.length){tb.innerHTML='<tr><td colspan="9" class="emp">📭</td></tr>';return;}tb.innerHTML=d.map(c=>`<tr><td><span class="cd">🎟️ ${c.code}</span></td><td><span class="bdg bgi">${c.type}</span></td><td>${c.type==='percent'?c.value+'%':'₹'+c.value}</td><td>₹${c.min_order||0}</td><td>${c.uses||0}</td><td>${c.max_uses||'∞'}</td><td>${c.expires?fd(c.expires):'ɴᴇᴠᴇʀ'}</td><td><span class="bdg ${c.active?'bgs':'bgd'}">${c.active?'✅':'❌'}</span></td><td><button class="bt bd bx" onclick="dcp('${c.code}')">🗑️</button></td></tr>`).join('');}
+function acm(){om(`<h3>➕ ᴀᴅᴅ ᴄᴏᴜᴘᴏɴ</h3><div class="fr"><div class="fg"><label>🏷️ ᴄᴏᴅᴇ</label><input id="cp-code"></div><div class="fg"><label>📊 ᴛʏᴘᴇ</label><select id="cp-type"><option value="percent">%</option><option value="fixed">₹</option></select></div><div class="fg"><label>💵 ᴠᴀʟ</label><input id="cp-val" type="number"></div><div class="fg"><label>💵 ᴍɪɴ</label><input id="cp-min" type="number" value="0"></div><div class="fg"><label>🔢 ᴍᴀx</label><input id="cp-max" type="number" value="0"></div><div class="fg"><label>📅 ᴇxᴘ</label><input id="cp-exp" type="date"></div></div><div style="display:flex;gap:10px;margin-top:14px"><button class="bt bp" onclick="dcpm()">➕</button><button class="bt bgh" onclick="cm()">❌</button></div>`);}
+async function dcpm(){const d={code:document.getElementById('cp-code').value.trim().toUpperCase(),type:document.getElementById('cp-type').value,value:+document.getElementById('cp-val').value,min_order:+document.getElementById('cp-min').value,max_uses:+document.getElementById('cp-max').value,expires:document.getElementById('cp-exp').value};if(!d.code||!d.value){toast('⚠️','e');return;}const r=await api('/add-coupon',{method:'POST',body:JSON.stringify(d)});if(r?.success){toast('✅','s');cm();lcp();}else toast('❌','e');}
+async function dcp(code){if(!confirm('🗑️?'))return;const r=await api('/delete-coupon',{method:'POST',body:JSON.stringify({code})});if(r?.success){toast('🗑️','s');lcp();}}
+
+// ═══════════════ ANNOUNCEMENT ═══════════════
+async function loadAnn(){const s=await api('/settings');if(!s)return;document.getElementById('an-title').value=s.announcement_title||'';document.getElementById('an-text').value=s.announcement_text||'';document.getElementById('sw-ann').classList.toggle('on',!!s.announcement_enabled);}
+async function saveAnn(){const d={announcement_title:document.getElementById('an-title').value.trim(),announcement_text:document.getElementById('an-text').value.trim()};const r=await api('/settings',{method:'POST',body:JSON.stringify(d)});if(r?.success)toast('💾','s');}
+
+// ═══════════════ NOTIFICATIONS ═══════════════
+async function sendNotif(){const uid=document.getElementById('nt-uid').value.trim();const title=document.getElementById('nt-title').value.trim();const body=document.getElementById('nt-body').value.trim();const type=document.getElementById('nt-type').value;if(!title||!body){toast('⚠️','e');return;}const r=await api('/send-notification',{method:'POST',body:JSON.stringify({user_id:uid,title,body,type})});if(r?.success){toast(`🔔 ${r.count}`,'s');document.getElementById('nt-title').value='';document.getElementById('nt-body').value='';}}
+
+// ═══════════════ FAQS ═══════════════
+async function lfq(){const d=await api('/faqs-all');const c=document.getElementById('faqList');if(!d||!d.length){c.innerHTML='<div class="emp">📭</div>';return;}c.innerHTML=d.map(f=>`<div style="background:rgba(0,0,0,.3);border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid rgba(255,255,255,.05)"><div style="font-size:12px;color:rgba(255,255,255,.85);line-height:1.6"><b>❓ ${esc(f.q)}</b><br>💡 ${esc(f.a)}</div><div style="margin-top:8px"><button class="bt bd bx" onclick="dfq('${f._id}')">🗑️</button></div></div>`).join('');}
+function afq(){om(`<h3>➕ ᴀᴅᴅ ꜰᴀQ</h3><div class="fg"><label>❓</label><input id="fq-q"></div><div class="fg"><label>💡</label><textarea id="fq-a"></textarea></div><div style="display:flex;gap:10px;margin-top:14px"><button class="bt bp" onclick="dfqAdd()">➕</button><button class="bt bgh" onclick="cm()">❌</button></div>`);}
+async function dfqAdd(){const q=document.getElementById('fq-q').value.trim();const a=document.getElementById('fq-a').value.trim();if(!q||!a){toast('⚠️','e');return;}const r=await api('/add-faq',{method:'POST',body:JSON.stringify({q,a})});if(r?.success){toast('✅','s');cm();lfq();}}
+async function dfq(id){if(!confirm('🗑️?'))return;const r=await api('/delete-faq',{method:'POST',body:JSON.stringify({id})});if(r?.success){toast('🗑️','s');lfq();}}
+
+// ═══════════════ TESTIMONIALS ═══════════════
+async function lts(){const d=await api('/testimonials-all');const c=document.getElementById('testList');if(!d||!d.length){c.innerHTML='<div class="emp">📭</div>';return;}c.innerHTML=d.map(t=>`<div style="background:rgba(0,0,0,.3);border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid rgba(255,255,255,.05)"><div style="color:#FFD700">${'★'.repeat(t.stars)}</div><div style="font-size:13px">"${esc(t.text)}"</div><div style="font-size:11px;color:#FFD700;margin-top:6px">- ${esc(t.who)}</div><div style="margin-top:8px"><button class="bt bd bx" onclick="dts('${t._id}')">🗑️</button></div></div>`).join('');}
+function atm(){om(`<h3>➕ ᴀᴅᴅ ᴛᴇꜱᴛɪᴍᴏɴɪᴀʟ</h3><div class="fg"><label>💬</label><textarea id="ts-text"></textarea></div><div class="fg"><label>👤</label><input id="ts-who"></div><div class="fg"><label>⭐</label><input id="ts-stars" type="number" value="5" min="1" max="5"></div><div style="display:flex;gap:10px;margin-top:14px"><button class="bt bp" onclick="dtsAdd()">➕</button><button class="bt bgh" onclick="cm()">❌</button></div>`);}
+async function dtsAdd(){const text=document.getElementById('ts-text').value.trim();const who=document.getElementById('ts-who').value.trim();const stars=+document.getElementById('ts-stars').value;if(!text||!who){toast('⚠️','e');return;}const r=await api('/add-testimonial',{method:'POST',body:JSON.stringify({text,who,stars})});if(r?.success){toast('✅','s');cm();lts();}}
+async function dts(id){if(!confirm('🗑️?'))return;const r=await api('/delete-testimonial',{method:'POST',body:JSON.stringify({id})});if(r?.success){toast('🗑️','s');lts();}}
+
+// ═══════════════ BROADCAST ═══════════════
+async function sendBC(){const m=document.getElementById('bc-msg').value.trim();if(!m){toast('⚠️','e');return;}const toBuyers=document.getElementById('bc-buyers').checked;const toKnown=document.getElementById('bc-known').checked;if(!confirm('📣?'))return;const r=await api('/broadcast',{method:'POST',body:JSON.stringify({message:m,to_buyers:toBuyers,to_known:toKnown})});if(r?.success){document.getElementById('bc-result').innerHTML=`<div style="padding:14px;background:rgba(0,255,136,.1);border:1px solid #00FF88;border-radius:12px;color:#00FF88;font-weight:800">✅ ${r.sent}</div>`;toast('📣','s');}}
+
+// ═══════════════ CHAT ═══════════════
+async function lc(){const d=await api('/chat/list');const c=document.getElementById('chatList');if(!d||!d.length){c.innerHTML='<div class="emp">📭</div>';return;}c.innerHTML=d.map(m=>{let mh='';if(m.media_type==='photo'&&m.media_url)mh=`<img src="${m.media_url}" onclick="window.open('${m.media_url}','_blank')" style="max-width:200px;border-radius:10px;margin-top:8px">`;else if(m.media_type==='voice'||m.media_type==='audio')mh=`<audio controls src="${m.media_url}" style="margin-top:8px"></audio>`;else if(m.media_type==='video')mh=`<video controls src="${m.media_url}" style="max-width:220px;border-radius:10px;margin-top:8px"></video>`;else if(m.media_type==='document')mh=`<a href="${m.media_url}" target="_blank" style="color:#FFD700">📄 ${esc(m.media_name||'file')}</a>`;return `<div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);border-left:3px solid #FFD700;border-radius:14px;padding:14px;margin-bottom:12px"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><div style="color:#FFD700;font-size:12px;font-weight:900">👤 ${esc(m.name||'Anon')} <span style="opacity:.5;font-size:10px">(${esc(m.chat_id||'')})</span></div><div style="font-size:10px;color:rgba(255,255,255,.4)">${fd(m.time)}</div></div><div style="font-size:13px;color:rgba(255,255,255,.85);background:rgba(255,215,0,.05);padding:10px 14px;border-radius:10px;border-left:3px solid #FFD700">💬 ${esc(m.text||'')}${mh?`<div>${mh}</div>`:''}</div><div style="margin-top:12px;display:flex;gap:8px"><input id="reply-${m.chat_id}" placeholder="✏️ ʀᴇᴘʟʏ..." class="filter-input" style="flex:1"><button class="bt bp bx" onclick="rpl('${m.chat_id}')">📨</button><button class="bt bi bx" onclick="rplMedia('${m.chat_id}')">📎</button></div></div>`;}).join('');}
+async function rpl(cid){const i=document.getElementById('reply-'+cid);const t=i.value.trim();if(!t)return;const r=await api('/chat/reply',{method:'POST',body:JSON.stringify({chat_id:cid,text:t})});if(r?.success){toast('📨','s');i.value='';lc();}}
+function rplMedia(cid){const inp=document.createElement('input');inp.type='file';inp.accept='image/*,audio/*,video/*,.pdf,.doc,.docx,.zip';inp.onchange=async()=>{const f=inp.files&&inp.files[0];if(!f)return;const cap=prompt('Caption:','')||'';const fd=new FormData();fd.append('chat_id',cid);fd.append('caption',cap);fd.append('file',f,f.name);try{const r=await fetch('/api/chat/reply-media',{method:'POST',body:fd});const d=await r.json();if(d.success){toast('📎','s');lc();}}catch(e){}};inp.click();}
+
+// ═══════════════ SETTINGS ═══════════════
+async function lst(){const s=await api('/settings');if(!s)return;document.getElementById('st-fgk').value=s.famgateway_api_key||'';document.getElementById('st-name').value=s.store_name||'FLASH PREMIUM';document.getElementById('st-tg').value=s.support_telegram||'';document.getElementById('st-owner').value=s.owner_telegram_id||'';document.getElementById('st-mt').value=s.max_attack_time||400;document.getElementById('st-mc').value=s.max_concurrent||4;document.getElementById('st-cd').value=s.cooldown||60;document.getElementById('st-bg').value=s.background_image||'';document.getElementById('st-logo').value=s.logo_image||'';document.getElementById('st-welcome').value=s.welcome_message||'';document.getElementById('st-refreward').value=s.referral_reward||50;document.getElementById('st-refdisc').value=s.referral_discount||20;document.getElementById('sw-maint').classList.toggle('on',!!s.maintenance_mode);document.getElementById('sw-chat').classList.toggle('on',s.chat_enabled!==false);document.getElementById('sw-rt').classList.toggle('on',s.ratings_enabled!==false);document.getElementById('sw-cp').classList.toggle('on',s.coupons_enabled!==false);}
+async function ssv(){const d={famgateway_api_key:document.getElementById('st-fgk').value.trim(),store_name:document.getElementById('st-name').value.trim(),support_telegram:document.getElementById('st-tg').value.trim(),owner_telegram_id:document.getElementById('st-owner').value.trim(),max_attack_time:+document.getElementById('st-mt').value,max_concurrent:+document.getElementById('st-mc').value,cooldown:+document.getElementById('st-cd').value,background_image:document.getElementById('st-bg').value.trim(),logo_image:document.getElementById('st-logo').value.trim(),welcome_message:document.getElementById('st-welcome').value.trim(),referral_reward:+document.getElementById('st-refreward').value,referral_discount:+document.getElementById('st-refdisc').value};const r=await api('/settings',{method:'POST',body:JSON.stringify(d)});if(r?.success)toast('💾','s');}
+async function toggleSetting(k,el){const sw=el.querySelector('.sw');sw.classList.toggle('on');const val=sw.classList.contains('on');await api('/settings',{method:'POST',body:JSON.stringify({[k]:val})});toast('⚙️ '+val,'s');}
+
+// ═══════════════ LOGS / RATINGS ═══════════════
+async function ll(){const d=await api('/logs');const tb=document.querySelector('#lt tbody');if(!d||!d.length){tb.innerHTML='<tr><td colspan="4" class="emp">📭</td></tr>';return;}tb.innerHTML=d.map(l=>`<tr><td>${fd(l.timestamp)}</td><td><span class="cd">${l.admin_id}</span></td><td><span class="bdg bgi">${l.action}</span></td><td>${esc(l.details)||'-'}</td></tr>`).join('');}
+async function loadRatings(){const d=await api('/ratings');if(!d)return;document.getElementById('rt-avg').textContent=d.avg;document.getElementById('rt-count').textContent=d.total;document.getElementById('rt-5').textContent=d.five;document.getElementById('rt-1').textContent=d.one;const c=document.getElementById('ratingsList');if(!d.list||!d.list.length){c.innerHTML='<div class="emp">📭</div>';return;}c.innerHTML=d.list.map(r=>`<div style="background:rgba(0,0,0,.3);border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid rgba(255,255,255,.05)"><div style="color:#FFD700;font-size:18px;letter-spacing:2px">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div><div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:6px">🆔 ${esc(r.order_id||'')} · ${fd(r.time)}</div>${r.comment?`<div style="font-size:12.5px;color:rgba(255,255,255,.8);margin-top:8px;background:rgba(255,215,0,.05);padding:8px 12px;border-radius:8px">"${esc(r.comment)}"</div>`:''}</div>`).join('');}
+
+// ═══════════════ ADVANCED COMMENTS ═══════════════
+let currentCommentEntity = null;
+function openComment(entityType, entityId, contextInfo) {
+  currentCommentEntity = { type: entityType, id: entityId };
+  document.getElementById('mc').innerHTML = `<h3>💎 ${entityType.toUpperCase()} COMMENT · ${entityId}</h3><div style="background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(255,0,85,.05));border:1px solid rgba(255,215,0,.3);border-radius:12px;padding:14px;margin-bottom:16px;font-size:12px">${contextInfo||''}</div><div id="commentList" style="max-height:300px;overflow-y:auto;margin-bottom:16px"></div><div class="fg"><label>💬 Add Comment</label><textarea id="newComment" placeholder="Type your comment..." style="min-height:80px"></textarea></div><div class="fr" style="margin-bottom:12px"><div class="fg"><label>🏷️ Tags</label><input id="commentTags" placeholder="urgent, vip, followup"></div><div class="fg"><label>⚡ Priority</label><select id="commentPriority"><option value="normal">🟢 Normal</option><option value="high">🟡 High</option><option value="urgent">🔴 Urgent</option></select></div></div><div style="display:flex;gap:10px"><button class="bt bp" onclick="submitComment()">💎 ᴘᴏꜱᴛ</button><button class="bt bgh" onclick="cm()">❌</button></div>`;
+  document.getElementById('ov').classList.add('active');
+  loadComments(entityType, entityId);
+}
+async function loadComments(entityType, entityId) {
+  const endpoint = entityType === 'order' ? `/api/order-comments/${entityId}` : `/api/user-notes/${entityId}`;
+  const d = await api(endpoint);
+  const list = document.getElementById('commentList');
+  if (!list) return;
+  if (!d || !d.length) { list.innerHTML = '<div class="emp" style="padding:20px">💬 ɴᴏ ᴄᴏᴍᴍᴇɴᴛꜱ ʏᴇᴛ</div>'; return; }
+  const pc = { normal: '#00FFFF', high: '#FFA500', urgent: '#FF0055' };
+  list.innerHTML = d.map(c => `
+    <div style="background:rgba(0,0,0,.35);border-left:3px solid ${pc[c.priority]||'#FFD700'};border-radius:12px;padding:14px;margin-bottom:10px;position:relative">
+      ${c.pinned ? '<div style="position:absolute;top:-6px;right:8px;background:#FFD700;color:#000;font-size:9px;font-weight:900;padding:3px 8px;border-radius:8px">📌 ᴘɪɴɴᴇᴅ</div>' : ''}
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:10px;color:rgba(255,255,255,.5)"><span>👤 ${esc(c.admin)} · ${c.priority.toUpperCase()}</span><span>${fd(c.created_at)}</span></div>
+      <div style="font-size:13px;color:#fff;line-height:1.6;margin-bottom:8px">${esc(c.comment)}</div>
+      ${c.tags && c.tags.length ? `<div style="margin-bottom:8px">${c.tags.map(t => `<span style="display:inline-block;background:rgba(255,215,0,.1);color:#FFD700;padding:3px 9px;border-radius:10px;font-size:10px;font-weight:800;margin-right:4px;border:1px solid #FFD70044">#${esc(t)}</span>`).join('')}</div>` : ''}
+      <div style="display:flex;gap:6px"><button class="bt bgh bx" onclick="pinComment('${c._id}',${!c.pinned})">📌</button><button class="bt bd bx" onclick="deleteComment('${c._id}')">🗑️</button></div>
+    </div>`).join('');
+}
+async function submitComment() {
+  const comment = document.getElementById('newComment').value.trim();
+  if (!comment) { toast('⚠️ ʙʟᴀɴᴋ','e'); return; }
+  const tags = document.getElementById('commentTags').value.split(',').map(t => t.trim()).filter(Boolean);
+  const priority = document.getElementById('commentPriority').value;
+  const { type, id } = currentCommentEntity;
+  const endpoint = type === 'order' ? `/api/order-comments/${id}/add` : `/api/user-notes/${id}/add`;
+  const r = await api(endpoint, { method: 'POST', body: JSON.stringify({ comment, tags, priority }) });
+  if (r?.success) { toast('💎 ᴘᴏꜱᴛᴇᴅ','s'); document.getElementById('newComment').value=''; loadComments(type,id); }
+}
+async function pinComment(id, pinned) { const r = await api('/comment/pin', { method: 'POST', body: JSON.stringify({ id, pinned }) }); if (r?.success) loadComments(currentCommentEntity.type, currentCommentEntity.id); }
+async function deleteComment(id) { if (!confirm('🗑️?')) return; const r = await api('/comment/delete', { method: 'POST', body: JSON.stringify({ id }) }); if (r?.success) loadComments(currentCommentEntity.type, currentCommentEntity.id); }
+
+// ═══════════════ USER LOCKS ═══════════════
+async function openUserLocks(uid) {
+  const d = await api(`/admin/user-locks/${uid}`);
+  const features = ['wheel','referral_bonus','premium_support','advanced_stats','priority_delivery','exclusive_keys','daily_streak_bonus','advanced_badges'];
+  const activeLocks = new Set((d.locks||[]).filter(l=>l.active).map(l=>l.feature));
+  om(`<h3>🔒 ᴘʀᴇᴍɪᴜᴍ ʟᴏᴄᴋꜱ · ${esc(uid)}</h3><div style="background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);border-radius:12px;padding:14px;margin-bottom:16px;font-size:12px">${d.purchased?'✅ <b style="color:#00FF88">PREMIUM USER</b>':'🔒 <b style="color:#FFA500">NON-PREMIUM USER</b>'}</div>${features.map(f=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(0,0,0,.3);border-radius:10px;margin-bottom:8px"><span style="font-size:12px;font-weight:800">${f.replace(/_/g,' ').toUpperCase()}</span><button class="bt ${activeLocks.has(f)?'bd':'bg'} bx" onclick="toggleLock('${uid}','${f}','${activeLocks.has(f)?'unlock':'lock'}')">${activeLocks.has(f)?'🔒 ʟᴏᴄᴋᴇᴅ':'🔓 ᴜɴʟᴏᴄᴋᴇᴅ'}</button></div>`).join('')}<div style="margin-top:16px"><button class="bt bgh" onclick="cm()">ᴄʟᴏꜱᴇ</button></div>`);
+}
+async function toggleLock(uid, feature, action) { const r = await api('/admin/toggle-lock', { method: 'POST', body: JSON.stringify({ user_id: uid, feature, action }) }); if (r?.success) { toast('🔒 ᴜᴘᴅᴀᴛᴇᴅ','s'); openUserLocks(uid); } }
+
+// ═══════════════ SOUND / THEME ═══════════════
+let soundEnabled = localStorage.getItem('flash_sound') !== 'off';
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  localStorage.setItem('flash_sound', soundEnabled ? 'on' : 'off');
+  updateSoundUI();
+  if (soundEnabled) playNotifSound();
+}
+function updateSoundUI() {
+  const el = document.getElementById('soundToggle');
+  const lbl = document.getElementById('soundLabel');
+  if (!el) return;
+  el.classList.toggle('on', soundEnabled);
+  if (lbl) lbl.textContent = soundEnabled ? 'ꜱᴏᴜɴᴅ ᴏɴ' : 'ꜱᴏᴜɴᴅ ᴏꜰꜰ';
+}
+function playNotifSound() {
+  if (!soundEnabled) return;
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.value = 880;
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+    osc.start(); osc.stop(ctx.currentTime + 0.4);
+  } catch (e) {}
+}
+function toggleTheme() {
+  const el = document.getElementById('themeToggle');
+  const isLight = el.classList.toggle('light');
+  localStorage.setItem('flash_theme', isLight ? 'light' : 'dark');
+  applyTheme(isLight);
+}
+function applyTheme(isLight) {
+  document.body.style.filter = isLight ? 'invert(0.92) hue-rotate(180deg)' : '';
+}
+
+// ═══════════════ KEYBOARD SHORTCUTS ═══════════════
+function openKbShortcuts() {
+  om(`<h3>⌨️ ᴋᴇʏʙᴏᴀʀᴅ ꜱʜᴏʀᴛᴄᴜᴛꜱ</h3>
+    <div class="kb-grid">
+      <div class="kb-row"><span class="kb-desc">Command Palette</span><div class="kb-keys"><kbd>Ctrl</kbd><kbd>K</kbd></div></div>
+      <div class="kb-row"><span class="kb-desc">Dashboard</span><div class="kb-keys"><kbd>Ctrl</kbd><kbd>1</kbd></div></div>
+      <div class="kb-row"><span class="kb-desc">Orders</span><div class="kb-keys"><kbd>Ctrl</kbd><kbd>2</kbd></div></div>
+      <div class="kb-row"><span class="kb-desc">Chat</span><div class="kb-keys"><kbd>Ctrl</kbd><kbd>3</kbd></div></div>
+      <div class="kb-row"><span class="kb-desc">Generate Keys</span><div class="kb-keys"><kbd>Ctrl</kbd><kbd>G</kbd></div></div>
+      <div class="kb-row"><span class="kb-desc">Search Orders</span><div class="kb-keys"><kbd>Ctrl</kbd><kbd>F</kbd></div></div>
+      <div class="kb-row"><span class="kb-desc">Close Modal</span><div class="kb-keys"><kbd>Esc</kbd></div></div>
+      <div class="kb-row"><span class="kb-desc">Refresh</span><div class="kb-keys"><kbd>Ctrl</kbd><kbd>R</kbd></div></div>
+    </div>
+    <div style="margin-top:16px"><button class="bt bgh" onclick="cm()">ᴄʟᴏꜱᴇ</button></div>`);
+}
+
+// ═══════════════ SPARKLINE ═══════════════
+let sparkInterval = null;
+async function loadSparkline() {
+  const d = await api('/chart-sparkline');
+  if (!d || !d.length) return;
+  const canvas = document.getElementById('sparkCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * 2;
+  canvas.height = rect.height * 2;
+  ctx.scale(2, 2);
+  const W = rect.width, H = rect.height;
+  ctx.clearRect(0, 0, W, H);
+  const max = Math.max(...d.map(x => x.revenue), 1);
+  const total = d.reduce((s, x) => s + x.revenue, 0);
+  document.getElementById('sparkTotal').textContent = '₹' + total.toLocaleString();
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, 'rgba(255,215,0,.4)');
+  grad.addColorStop(1, 'rgba(255,215,0,0)');
+  ctx.beginPath();
+  ctx.strokeStyle = '#FFD700';
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+  const stepX = W / (d.length - 1);
+  d.forEach((pt, i) => {
+    const x = i * stepX;
+    const y = H - (pt.revenue / max) * (H - 8) - 4;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+  ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
+  ctx.fillStyle = grad; ctx.fill();
+  d.forEach((pt, i) => {
+    const x = i * stepX;
+    const y = H - (pt.revenue / max) * (H - 8) - 4;
+    if (pt.revenue > 0) {
+      ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = '#FF0055'; ctx.fill();
+    }
+  });
+}
+
+// ═══════════════ ADVANCED ORDERS ═══════════════
+let orderFilterState = { status: 'all', orders: [] };
+function setOrderFilter(status, el) {
+  orderFilterState.status = status;
+  document.querySelectorAll('#p-orders .filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  ldAdvancedOrders();
+}
+function resetOrderFilters() {
+  document.getElementById('advOrderSearch').value = '';
+  document.getElementById('advMinAmt').value = '';
+  document.getElementById('advMaxAmt').value = '';
+  document.getElementById('advDateFrom').value = '';
+  document.getElementById('advDateTo').value = '';
+  setOrderFilter('all', document.querySelector('#p-orders .filter-chip[data-status="all"]'));
+}
+async function ldAdvancedOrders() {
+  const q = document.getElementById('advOrderSearch')?.value || '';
+  const min = document.getElementById('advMinAmt')?.value || '';
+  const max = document.getElementById('advMaxAmt')?.value || '';
+  const from = document.getElementById('advDateFrom')?.value || '';
+  const to = document.getElementById('advDateTo')?.value || '';
+  const status = orderFilterState.status;
+  const params = new URLSearchParams({ q, status, min, max, from, to });
+  const d = await api('/search-orders?' + params.toString());
+  if (!d) return;
+  orderFilterState.orders = d;
+  const tb = document.querySelector('#ot tbody');
+  const countLabel = document.getElementById('orderCountLabel');
+  if (countLabel) countLabel.textContent = `(${d.length})`;
+  if (!d.length) { tb.innerHTML = '<tr><td colspan="10" class="emp">📭 ɴᴏ ᴏʀᴅᴇʀꜱ</td></tr>'; return; }
+  tb.innerHTML = d.map(x => `
+    <tr data-order-id="${x.order_id}">
+      <td><input type="checkbox" class="select-cb order-cb" data-id="${x.order_id}" onchange="updateBulkBar()"></td>
+      <td>${fd(x.created_at)}</td>
+      <td><span class="cd">${esc(x.order_id)}</span></td>
+      <td>${esc(x.customer_name) || '-'}</td>
+      <td><span class="cd">${x.telegram_id || '-'}</span></td>
+      <td>${esc(x.product_name) || '-'}</td>
+      <td><b style="color:#00FF88">₹${x.amount}</b></td>
+      <td><span class="bdg ${x.status === 'success' ? 'bgs' : x.status === 'pending' ? 'bgw' : 'bgd'}">${x.status}</span></td>
+      <td>${x.key ? `<button class="bt bgh bx" onclick="cpt('${x.key}')">${x.key.substring(0, 10)}...</button>` : '-'}</td>
+      <td>
+        <button class="bt bi bx" onclick="orderDetail('${x.order_id}')">🔍</button>
+        <button class="bt bp2 bx" onclick="openComment('order','${x.order_id}','<b>${esc(x.product_name || 'Order')}</b> · ₹${x.amount}')">💎</button>
+        <button class="bt bw bx" onclick="resendKey('${x.order_id}')">📨</button>
+      </td>
+    </tr>`).join('');
+}
+
+let selectedOrders = new Set();
+function toggleSelectAll() {
+  const checked = document.getElementById('selectAllOrders').checked;
+  document.querySelectorAll('.order-cb').forEach(cb => {
+    cb.checked = checked;
+    if (checked) selectedOrders.add(cb.dataset.id);
+    else selectedOrders.delete(cb.dataset.id);
+  });
+  updateBulkBar();
+}
+function updateBulkBar() {
+  selectedOrders.clear();
+  document.querySelectorAll('.order-cb:checked').forEach(cb => selectedOrders.add(cb.dataset.id));
+  const bar = document.getElementById('bulkBar');
+  const count = document.getElementById('bulkCount');
+  if (selectedOrders.size > 0) { bar.classList.add('show'); count.textContent = `${selectedOrders.size} ꜱᴇʟᴇᴄᴛᴇᴅ`; }
+  else { bar.classList.remove('show'); }
+}
+function clearSelection() {
+  selectedOrders.clear();
+  document.querySelectorAll('.order-cb').forEach(cb => cb.checked = false);
+  document.getElementById('selectAllOrders').checked = false;
+  updateBulkBar();
+}
+async function bulkAction(action) {
+  const labels = { mark_paid: 'Mark as Paid', resend: 'Resend Keys', refund: 'Refund', delete: 'Delete' };
+  if (!confirm(`⚠️ ${labels[action]} ${selectedOrders.size} orders?`)) return;
+  const r = await api('/bulk-orders', { method: 'POST', body: JSON.stringify({ action, order_ids: Array.from(selectedOrders) }) });
+  if (r?.success) {
+    toast(`✅ ${r.count}/${r.total} ${action.replace('_', ' ')}`, 's');
+    playNotifSound();
+    clearSelection();
+    ldAdvancedOrders();
+  } else { toast('❌ Failed', 'e'); }
+}
+
+// ═══════════════ POLLING (Vercel-compatible replacement for SSE) ═══════════════
+let lastOrderCount = 0;
+async function pollOrders() {
+  try {
+    const d = await api('/orders/stream');
+    if (d && typeof d.count === 'number') {
+      if (lastOrderCount > 0 && d.count > lastOrderCount) {
+        const diff = d.count - lastOrderCount;
+        newOrderCount += diff;
+        toast(`💰 ${diff} new order${diff>1?'s':''}!`, 's');
+        playNotifSound();
+        const badge = document.getElementById('newOrderBadge');
+        if (badge) { 
+          const bc = document.getElementById('badgeCount');
+          if (bc) bc.textContent = newOrderCount;
+          badge.style.display = 'flex'; 
+        }
+        if (cp === 'dash') ld();
+        if (cp === 'orders') ldAdvancedOrders();
+        loadSparkline();
+      }
+      lastOrderCount = d.count;
+    }
+  } catch (e) {}
+}
+
+// ═══════════════ GLOBAL KEYDOWN ═══════════════
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openCmdPalette(); return; }
+  if (e.key === 'Escape') { closeCmdPalette(); cm(); return; }
+  const pal = document.getElementById('cmdPalette');
+  if (pal.style.display === 'flex') {
+    if (e.key === 'ArrowDown') { e.preventDefault(); cmdSelectedIndex = Math.min(cmdSelectedIndex + 1, cmdFiltered.length - 1); renderCmdResults(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); cmdSelectedIndex = Math.max(cmdSelectedIndex - 1, 0); renderCmdResults(); }
+    else if (e.key === 'Enter') { e.preventDefault(); execCmd(cmdSelectedIndex); }
+    return;
+  }
+  if (e.ctrlKey || e.metaKey) {
+    if (e.key === '1') { e.preventDefault(); go('dash'); }
+    if (e.key === '2') { e.preventDefault(); go('orders'); }
+    if (e.key === '3') { e.preventDefault(); go('chat'); }
+    if (e.key === 'g') { e.preventDefault(); go('genkey'); }
+    if (e.key === 'f') { e.preventDefault(); go('orders'); setTimeout(() => document.getElementById('advOrderSearch')?.focus(), 300); }
+  }
+});
+document.getElementById('cmdInput')?.addEventListener('input', e => filterCmds(e.target.value));
+document.getElementById('cmdPalette')?.addEventListener('click', e => { if (e.target.id === 'cmdPalette') closeCmdPalette(); });
+
+// ═══════════════ INIT ═══════════════
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('flash_theme') === 'light') {
+    document.getElementById('themeToggle')?.classList.add('light');
+    applyTheme(true);
+  }
+  updateSoundUI();
+  ld();
+  setTimeout(() => { loadSparkline(); sparkInterval = setInterval(loadSparkline, 15000); }, 2000);
+  // Poll orders every 8s (was SSE)
+  setTimeout(() => { pollOrders(); setInterval(pollOrders, 8000); }, 3000);
+});
+</script>
+</body>
+</html>
